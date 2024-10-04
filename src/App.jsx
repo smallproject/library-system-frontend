@@ -1,33 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import GetEndpointCard from "./components/GetEndpoint/GetEndpointCard.jsx";
+import {Route, Routes} from "react-router-dom";
+import React from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+        {/* eslint-disable-next-line react/jsx-no-undef */}
+
+        <Routes>
+            <Route path={"/authors"} element={<GetEndpointCard title={"AUTHOR"} Url={"http://localhost:8080/api/v1/authors/1"}/>}/>
+            <Route path={"/books"} element={<GetEndpointCard title={"BOOK"} Url={"http://localhost:8080/api/v1/books/1"}/>}/>
+            <Route path={"/inventories"} element={<GetEndpointCard title={"INVENTORY"} Url={"http://localhost:8080/api/v1/inventory/1"}/>}/>
+            <Route path={"/userreviews"} element={<GetEndpointCard title={"USER REVIEW"} Url={"http://localhost:8080/api/v1/userreviews/1"}/>}/>
+        </Routes>
     </>
   )
 }
