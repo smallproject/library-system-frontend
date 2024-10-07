@@ -4,30 +4,29 @@ import React, {useEffect} from 'react';
 import axios from "axios";
 import * as url from "node:url";
 
-function GetEndpointCard({title, Url}) {
+function GetEndpointCard({title, url}) {
     const [data, setData] = React.useState(null);
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(null);
 
 
-    const fetchData = async () => {
-        setLoading(true);
-        setError(null);
-
-        try {
-            const response = await axios.get(Url);
-            setData(response.data);
-        } catch (e) {
-            console.error(e);
-            setError(e);
-        } finally {
-            setLoading(false);
-        }
-
-    }
 
     useEffect(() => {
 
+        const fetchData = async () => {
+            setLoading(true);
+            setError(null);
+
+            try {
+                const response = await axios.get(url);
+                setData(response.data);
+            } catch (e) {
+                console.error(e);
+                setError(e);
+            } finally {
+                setLoading(false);
+            }
+        }
         fetchData()
     }, []);
 
