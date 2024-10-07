@@ -1,0 +1,10 @@
+.navbar ul{
+    border: white solid 2px;
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: flex-end;
+    padding: 1rem;
+}
