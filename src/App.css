@@ -3,6 +3,8 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+/*  added by me*/
+
 }
 
 .logo {
@@ -39,4 +41,32 @@
 
 .read-the-docs {
   color: #888;
+}
+
+
+.App{
+  display: flex;
+  flex-direction: column;
+
+
+  width: 1080px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid white;
+}
+
+.section {
+  /*display: flex;*/
+  border: 1px solid red;
+  /*margin: 0 auto;*/
+  /*padding: 2rem;*/
+  /*text-align: center;*/
+  /*flex-grow: 1;*/
+
+}
+
+.test {
+  display: flex;
+  border: 1px solid purple;
 }
