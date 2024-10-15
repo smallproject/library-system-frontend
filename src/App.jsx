@@ -5,13 +5,14 @@ import React from "react";
 import AuthorMain from "./models/Author/AuthorMain.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import "./App.css"
+import Navbar from "./components/Navbar/Navbar.jsx";
+import Footer from "./components/Footer/Footer.jsx";
 
 function App() {
 
   return (
     <>
-        {/* eslint-disable-next-line react/jsx-no-undef */}
-        <div className="App">
+        <div className={"App"}>
             <Navbar/>
             <div className="test">
                 <h1>Home page</h1>
@@ -29,7 +30,8 @@ function App() {
                                                                            url={"http://localhost:8080/api/v1/userreviews/1"}/>}/>
                 </Routes>
             </div>
-            <div className={"footer"}></div>
+
+            <Footer/>
         </div>
     </>
   )
