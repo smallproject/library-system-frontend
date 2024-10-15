@@ -39,8 +39,65 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  #root {
+    min-width: 600px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+  }
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
+  }
+}
+
+/* For devices with a maximum width of 600px (common mobile phones) */
+@media only screen and (max-width: 600px) {
+  #root {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  }
+  body {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .container {
+    width: 100%;
+    padding: 0 15px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .navigation {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navigation a {
+    padding: 10px;
+    text-align: center;
+    display: block;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .main-content {
+    padding: 10px;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  /* Adjusting images to be responsive */
+  img {
+    width: 100%;
+    height: auto;
   }
 }
 
