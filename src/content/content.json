@@ -1,0 +1,60 @@
+{
+  "en": {
+    "homepage": {
+      "title": "Welcome to the Library System Libro",
+      "description": "This is the homepage of the website",
+      "description2": "Explore our collection of books and resources to enhance your knowledge."
+    },
+    "about": {
+      "title": "About us",
+      "description": "We are dedicated to providing access to a world of knowledge through books and resources.",
+      "description2": "Welcome to Libro! Our mission is to make knowledge and literature accessible to everyone, anywhere, at any time. Founded with a passion for reading and a commitment to lifelong learning, we strive to provide a digital platform that connects people with books, articles, research materials, and multimedia resources across a range of subjects and genres. Whether you&#39;re a student, a professional, or simply a book lover, Libro has something for everyone, with a carefully curated collection to inspire, educate, and entertain.\n",
+      "description3": "Our team is dedicated to creating an intuitive, user-friendly experience where you can explore, discover, and engage with new ideas. We believe that everyone should have the chance to dive into a world of knowledge without limitations, and our 24/7 platform reflects this. Join us on this journey to expand your horizons and connect with a community of like-minded readers. At Libro, learning never stops."
+    },
+    "catalog": {
+        "title": "Book Catalog",
+        "description": "Browse through our extensive collection of books across various genres.",
+        "description2": "Welcome to the Libro Book Catalog! Here you can explore our vast collection of books, ranging from classic literature to contemporary fiction, non-fiction, and more. Whether you're looking for a new bestseller, a timeless classic, or a hidden gem, we have something for everyone. Our catalog is carefully curated to provide a diverse selection of titles that cater to a wide range of interests and preferences. From mystery and romance to science fiction and self-help, you'll find a world of stories waiting to be discovered. Start browsing now and embark on a literary adventure with Libro!",
+        "description3": "Our system not only supports quick and efficient access to materials but also enhances learning through features like reading history, bookmarks, and in-depth annotations, allowing users to create a personalized digital library experience. With resources available 24/7, you can learn, explore, and grow on your own schedule. Join a growing community of book lovers, students, and researchers who rely on Libro for quality content, curated collections, and a unique reading experience designed to inspire lifelong learning."
+    },
+    "contact": {
+      "title": "Contact Us",
+      "description": "Get in touch with us for any inquiries or feedback.",
+      "description2": "We value your feedback and are here to assist you with any questions or concerns you may have. Whether you're looking for help with our platform, have suggestions for improvement, or simply want to share your thoughts, we're here to listen. Our team is dedicated to providing a seamless user experience and welcomes your input to help us enhance our services. Feel free to reach out to us via email, phone, or social media, and we'll do our best to address your needs promptly. Thank you for choosing Libro, and we look forward to hearing from you!"
+    },
+    "notfound": {
+      "title": "404 - Page Not Found",
+      "description": "The page you are looking for does not exist."
+    }
+  },
+
+  "nl": {
+    "homepage": {
+      "title": "Welkom bij het Bibliotheeksysteem Libro",
+      "description": "Dit is de startpagina van de website",
+      "description2": "Verken onze collectie boeken en bronnen om je kennis te vergroten."
+    },
+    "about": {
+      "title": "Over ons",
+      "description": "Wij zijn toegewijd aan het toegankelijk maken van kennis door middel van boeken en bronnen.",
+      "description2": "Welkom bij Libro! Onze missie is om kennis en literatuur voor iedereen, overal en altijd toegankelijk te maken. Gegrondvest met een passie voor lezen en een toewijding aan levenslang leren, streven we ernaar een digitaal platform te bieden dat mensen verbindt met boeken, artikelen, onderzoeks- en multimediabronnen over diverse onderwerpen en genres. Of je nu student, professional of boekenliefhebber bent, bij Libro is er voor ieder wat wils, met een zorgvuldig samengestelde collectie die inspireert, onderwijst en vermaakt.",
+      "description3": "Ons team zet zich in om een intuïtieve, gebruiksvriendelijke ervaring te creëren waarin je nieuwe ideeën kunt verkennen, ontdekken en ermee kunt omgaan. Wij geloven dat iedereen de kans moet krijgen om zonder beperkingen in een wereld van kennis te duiken, en ons platform dat 24/7 beschikbaar is, weerspiegelt dit. Ga met ons mee op deze reis om je horizon te verbreden en in contact te komen met een gemeenschap van gelijkgestemde lezers. Bij Libro stopt leren nooit."
+    },
+    "catalog": {
+      "title": "Boekencatalogus",
+      "description": "Blader door onze uitgebreide collectie boeken in verschillende genres.",
+      "description2": "Welkom bij de Libro Boekencatalogus! Hier kun je onze uitgebreide collectie boeken ontdekken, van klassieke literatuur tot hedendaagse fictie, non-fictie en meer. Of je nu op zoek bent naar een nieuwe bestseller, een tijdloze klassieker of een verborgen parel, we hebben voor ieder wat wils. Onze catalogus is zorgvuldig samengesteld om een gevarieerde selectie van titels te bieden die aansluiten bij uiteenlopende interesses en voorkeuren. Van mysterie en romantiek tot sciencefiction en zelfhulp, er wacht een wereld aan verhalen om ontdekt te worden. Begin nu met bladeren en start je literaire avontuur met Libro!",
+      "description3": "Ons systeem biedt niet alleen snelle en efficiënte toegang tot materialen, maar verbetert ook het leerproces door functies zoals leesgeschiedenis, bladwijzers en diepgaande annotaties, waarmee gebruikers een gepersonaliseerde digitale bibliotheekervaring kunnen creëren. Met bronnen die 24/7 beschikbaar zijn, kun je leren, ontdekken en groeien op jouw eigen tempo. Sluit je aan bij een groeiende gemeenschap van boekenliefhebbers, studenten en onderzoekers die vertrouwen op Libro voor kwaliteitscontent, zorgvuldig samengestelde collecties en een unieke leeservaring die ontworpen is om levenslang leren te inspireren."
+    },
+    "contact": {
+      "title": "Contacteer ons",
+      "description": "Neem contact met ons op voor vragen of feedback.",
+      "description2": "We waarderen je feedback en staan klaar om je te helpen met vragen of opmerkingen. Of je nu hulp nodig hebt bij ons platform, suggesties hebt voor verbeteringen, of gewoon je gedachten wilt delen, we luisteren graag. Ons team zet zich in voor een optimale gebruikerservaring en waardeert jouw input om onze diensten te verbeteren. Voel je vrij om contact met ons op te nemen via e-mail, telefoon of sociale media; we zullen ons best doen om je snel te helpen. Bedankt dat je voor Libro hebt gekozen, en we horen graag van je!"
+    },
+    "notfound": {
+      "title": "404 - Pagina niet gevonden",
+      "description": "De pagina die je zoekt bestaat niet."
+    }
+  }
+
+}
