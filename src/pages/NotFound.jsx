@@ -1,10 +1,18 @@
-import React from 'react';
+import "/src/App.css"
+import {LanguageContext} from "../context/LanguageContext/LanguageContext.jsx";
+import {useContext} from "react";
+import content from "../content/content.json";
 
-function NotFound(props) {
+function NotFound() {
+    const {language} = useContext(LanguageContext);
+    const {title, description} = content[language].notfound;
+
     return (
-        <section>
-            <h1>404 - Page Not Found</h1>
-            <p>Sorry, the page you're looking for doesn't exist.</p>
+        <section className={"notfound"}>
+            <h1>{title}</h1>
+            <p>
+                {description}
+            </p>
         </section>
     );
 }
