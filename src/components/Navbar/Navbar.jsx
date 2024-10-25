@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import "./Navbar.css";
 import {Link} from "react-router-dom";
 import { FaBars, FaTimes } from 'react-icons/fa';
-import {LanguageContext} from "../../context/LanguageContext/LanguageContext.jsx";
+import {LanguageContext} from "../../context/LanguageContext.jsx";
 
 
 const Navbar = () => {

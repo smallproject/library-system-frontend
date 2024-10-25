@@ -1,5 +1,5 @@
 import "/src/App.css"
-import {LanguageContext} from "../context/LanguageContext/LanguageContext.jsx";
+import {LanguageContext} from "../context/LanguageContext.jsx";
 import {useContext} from "react";
 import content from "../content/content.json";
 

@@ -1,6 +1,6 @@
 import "/src/App.css";
 import {useContext} from "react";
-import {LanguageContext} from "../context/LanguageContext/LanguageContext.jsx";
+import {LanguageContext} from "../context/LanguageContext.jsx";
 import content from "../content/content.json"
 
 function Catalog() {

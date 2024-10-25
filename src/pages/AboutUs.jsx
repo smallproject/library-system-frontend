@@ -1,7 +1,7 @@
 import "/src/App.css"
 import content from "../content/content.json";
 import {useContext} from "react";
-import {LanguageContext} from "../context/LanguageContext/LanguageContext.jsx";
+import {LanguageContext} from "../context/LanguageContext.jsx";
 
 function AboutUs() {
     const {language} = useContext(LanguageContext);
