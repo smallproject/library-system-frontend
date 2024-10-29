@@ -12,6 +12,9 @@ import Catalog from "./pages/Catalog.jsx";
 import Contact from "./pages/Contact.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import Header from "./components/Header/Header.jsx";
+import Profile from "./pages/Profile.jsx";
+import SignIn from "./pages/SignIn.jsx";
+import SignUp from "./pages/SignUp.jsx";
 
 function App() {
 
@@ -41,6 +44,10 @@ function App() {
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/notfound" element={<NotFound />} />
+                    {/*<Route path="/" element={<Home />} />*/}
+                    <Route path={"/profile"} element={<Profile />} />
+                    <Route path="/signin" element={<SignIn />} />
+                    <Route path="/signup" element={<SignUp />} />
                 </Routes>
             </main>
 
