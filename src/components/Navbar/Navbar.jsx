@@ -1,19 +1,24 @@
 import React, {useContext} from 'react';
 import "./Navbar.css";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { FaBars, FaTimes } from 'react-icons/fa';
 import {LanguageContext} from "../../context/LanguageContext.jsx";
+import {ThemeContext} from "../../context/ThemeContext.jsx";
+import {AuthContext} from "../../context/AuthContext.jsx";
 
 
-const Navbar = () => {
+function Navbar() {
+    const {isAuth, logout} = useContext(AuthContext);
     const [isOpen, setIsOpen] = React.useState(false);
     const {language, setLanguage} = useContext(LanguageContext);
     const selectLanguage = (e) => { setLanguage(e.target.value) }
+    const navigate = useNavigate();
 
     const toggleNavbar = () => {
         setIsOpen(!isOpen);
     }
 
+    const {theme, toggleTheme} = useContext(ThemeContext);
 
 
     return (
@@ -39,6 +44,44 @@ const Navbar = () => {
                     <option value="en">EN</option>
                 </select>
             </div>
+
+            <div className={"theme-toggle"}  style={{
+                backgroundColor: theme === 'light' ? '#ffffff' : '#333333',
+                color: theme === 'light' ? '#000000' : '#ffffff',
+                padding: '20px',
+                textAlign: 'center'
+            }}>
+                <p>The current theme is {theme}</p>
+                <button onClick={toggleTheme}>
+                    Toggle Theme
+                </button>
+            </div>
+
+            {isAuth ? (
+                <div>
+                    <button
+                        type="button"
+                        onClick={logout}
+                    >
+                        Log out
+                    </button>
+                </div>
+            ) : (
+                <div>
+                    <button
+                        type="button"
+                        onClick={() => navigate('/signin')}
+                    >
+                        Log in
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => navigate('/signup')}
+                    >
+                        Registreren
+                    </button>
+                </div>
+            )}
         </nav>
     );
 }
