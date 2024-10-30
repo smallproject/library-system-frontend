@@ -1,26 +1,89 @@
-import {createContext, useState} from 'react';
+import {createContext, useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
+import {jwtDecode} from "jwt-decode";
 
 export const AuthContext = createContext({});
 
 function AuthContextProvider({children}) {
-    const [isAuth, toggleIsAuth] = useState( false);
+    const [auth, setAuth] = useState({
+        isAuth: false,
+        user: null,
+        status: 'pending'
+    });
+
     const navigate = useNavigate();
 
-    function login() {
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+
+        // if (token && isTokenValid(token)) {
+        // this is temporary
+        if (token) {
+            void login(token);
+        } else {
+            setAuth({
+                isAuth: false,
+                user: null,
+                status: 'done'
+            });
+        }
+    }, []);
+
+    async function login(token) {
+        localStorage.setItem('token', token);
+
+        const decodedToken = jwtDecode(token);
+        const id = decodedToken.sub.split("::")[0];
+        console.log("id: " +id)
+
+        try {
+            const response = await axios.get(`http://localhost:8080/api/v1/books`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            console.log(response);
+
+            setAuth({
+                isAuth: true,
+                user: {
+                    // username: response.data.username,
+                    // email: response.data.email,
+                    // id: response.data.id,
+                    // role: 'user'
+                },
+                status: 'done'
+            });
+        } catch (e) {
+            console.log(e);
+            setAuth({
+                isAuth: false,
+                user: null,
+                status: 'done'
+            });
+        }
+
         console.log("Gebruiker is ingelogd");
-        toggleIsAuth(true);
+        // setAuth(true);
         navigate('/profile');
     }
 
     function logout() {
         console.log("Gebruiker is uitgelogd");
-        toggleIsAuth(false);
+        // setAuth(false);
+        setAuth({
+            isAuth: false,
+            user: null,
+            status: 'done'
+        });
         navigate('/');
     }
 
     const contextData = {
-        isAuth,
+        isAuth: auth.isAuth,
         login,
         logout
     }
