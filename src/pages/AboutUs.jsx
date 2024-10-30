@@ -1,10 +1,30 @@
-import React from 'react';
+import "/src/App.css"
+import content from "../content/content.json";
+import {useContext} from "react";
+import {LanguageContext} from "../context/LanguageContext.jsx";
 
-function AboutUs(props) {
+function AboutUs() {
+    const {language} = useContext(LanguageContext);
+    const {title, description, description2, description3} = content[language].about;
+
     return (
         <section>
-            <h1>About Us</h1>
-            <p>We are dedicated to providing access to a world of knowledge through books and resources.</p>
+            <article className={"aboutus"}>
+                <h1>{title}</h1>
+                <br/>
+                <p>
+                    {description}
+                </p>
+                <br/>
+                <p>
+                    {description2}
+                </p>
+                <br/>
+                <br/>
+                <p>
+                    {description3}
+                </p>
+            </article>
         </section>
     );
 }

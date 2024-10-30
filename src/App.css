@@ -1,19 +1,123 @@
 #root {
-  max-width: 1280px;
+  max-width: max-content;
   margin: 0 auto;
   padding: 0;
   text-align: center;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  padding: 2rem;
+  /*padding: 20px;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  width: 80%;
+  max-width: 1200px;
+}
+
+section {
+    /*border: 1px solid black;*/
+    display: flex;
+    align-items: center;
+    /*max-width: 1000rem;*/
+    height: 1240px;
+    width: 100%;
+    object-fit: cover;
+
+    min-height: 50vw;
 }
 
 .App {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  max-width: 1500px;
+  flex-wrap: wrap;
+  /*border: #1a1a1a 1px solid;*/
 }
 
-.main-content {
-  flex: 1;
+
+
+.container {
+    font-family: Arial, sans-serif;
+    /*background-color: #f4f4f4;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /*height: 75vh;*/
+    /*background-image: url("src/assets/texture-1909992_1280.webp");*/
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /*border: black solid 1px;*/
+
+    flex-grow: 1;
+    min-width: 1240px;
+    object-fit: cover;
+}
+
+
+.catalog {
+  text-align: justify;
+  box-shadow: #535bf2 0px 0px 10px;
+  border-radius: 1rem;
   padding: 2rem;
+}
+
+.aboutus {
+   text-align: justify;
+   box-shadow: #535bf2 0px 0px 10px;
+   border-radius: 1rem;
+   padding: 2rem;
+ }
+
+.contactus {
+  text-align: justify;
+  box-shadow: #535bf2 0px 0px 10px;
+  border-radius: 1rem;
+  padding: 2rem;
+  height: 30vw;
+}
+
+.notfound {
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+  align-content: center;
+  box-shadow: #535bf2 0px 0px 10px;
+  border-radius: 1rem;
+  padding: 2rem;
+  height: 30vw;
+}
+
+.overview {
+  height: 100vw;
+  text-align: justify;
+  /*box-shadow: #535bf2 0px 0px 10px;*/
+  /*border-radius: 1rem;*/
+  /*padding: 2rem;*/
+}
+
+.signin-page {
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  text-align: justify;
+  align-content: start;
+  /*box-shadow: #535bf2 0px 0px 10px;*/
+  /*border-radius: 1rem;*/
+  padding: 2rem;
+  height: 30vw;
+  gap: 3rem;
 }
 
 .logo {
@@ -27,6 +131,12 @@
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.img-btm-banner {
+  height: 30vw;
+  width: 100%;
+  object-fit: cover;
 }
 
 @keyframes logo-spin {
@@ -85,7 +195,7 @@
     border-bottom: 1px solid #ddd;
   }
 
-  .main-content {
+  .main {
     padding: 10px;
   }
 
@@ -122,7 +232,13 @@
     font-size: 16px;
   }
 
+  /*.App {*/
+  /*  display: flex;*/
+  /*  flex-direction: column;*/
+  /*}*/
+
   .container {
+    height: auto;
     width: 100%;
     padding: 0 20px;
   }
@@ -137,8 +253,11 @@
     flex-direction: row;
   }
 
-  .main-content {
+  .main {
     padding: 15px;
+    margin: 0;
+    /*display: flex;*/
+    /*flex-direction: column;*/
   }
 
   /* Adjusting grid layouts for tablets */

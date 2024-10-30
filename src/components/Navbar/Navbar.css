@@ -1,16 +1,38 @@
 .navbar {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: #000;
+    /*background-color: #000;*/
+    background-color: #8fb9ed;
+    /*background-color: white;*/
     padding: 1.5rem 2.5rem;
-    color: white;
+    /*color: white;*/
+    color: black;
 }
+
+.row-1{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: baseline;
+    width: 100%;
+    border-bottom: #213547 solid 2px;
+}
+
+.row-2{
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: center;
+     width: 100%;
+ }
 
 .navbar-logo h1 {
     margin: 0;
     font-size: 3rem;
-    color: white;
+    color: black;
+    /*color: white;*/
 }
 
 .navbar-links {
@@ -19,7 +41,8 @@
 }
 
 .navbar-links a {
-    color: white;
+    color: black;
+    /*color: white;*/
     text-decoration: none;
     font-size: 1rem;
 }
