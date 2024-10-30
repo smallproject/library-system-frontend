@@ -25,20 +25,24 @@ function App() {
 
             <main className={"main-content container"}>
                 <Routes>
-                    <Route path="/" element={<Main />}>
-                        <Route path={"/books"} element={<GetAllEndpointTiles title={"Authors"} url={`http://localhost:8080/api/v1/books/`}/>}>
-                            <Route path={":id"} element={<GetEndpointCard title={"GetBy"} url={`http://localhost:8080/api/v1/books/`}/>}/>
-                        </Route>
-                        <Route path={"/authors"} element={<GetAllEndpointTiles title={"Authors"} url={`http://localhost:8080/api/v1/authors/`}/>}>
-                            <Route path={":id"} element={<GetEndpointCard title={"GetBy"} url={`http://localhost:8080/api/v1/authors/`}/>}/>
-                        </Route>
-                        <Route path={"/inventories"} element={<GetAllEndpointTiles title={"Authors"} url={`http://localhost:8080/api/v1/inventories/`}/>}>
-                            <Route path={":id"} element={<GetEndpointCard title={"GetBy"} url={`http://localhost:8080/api/v1/inventories/`}/>}/>
-                        </Route>
-                        <Route path={"/userreviews"} element={<GetAllEndpointTiles title={"Authors"} url={`http://localhost:8080/api/v1/userreviews/`}/>}>
-                            <Route path={":id"} element={<GetEndpointCard title={"GetBy"} url={`http://localhost:8080/api/v1/userreviews/`}/>}/>
-                        </Route>
+                    <Route path="/*" element={<Main />}>
+                    {/*    <Route path={"books"} element={<GetAllEndpointTiles title={"Authors"} url={`http://localhost:8080/api/v1/books`}/>}>*/}
+                    {/*        <Route path={":id"} element={<GetEndpointCard title={"GetBy"} url={`/http://localhost:8080/api/v1/books`}/>}/>*/}
+                    {/*    </Route>*/}
+                    {/*    <Route path={"authors"} element={<GetAllEndpointTiles title={"Authors"} url={`http://localhost:8080/api/v1/authors`}/>}>*/}
+                    {/*        <Route path={":id"} element={<GetEndpointCard title={"GetBy"} url={`http://localhost:8080/api/v1/authors/`}/>}/>*/}
+                    {/*        <Route path={"update/:id"} element={<PostEndpointCard title={"GetBy"} url={`http://localhost:8080/api/v1/authors/`}/>}/>*/}
+
+                    {/*    </Route>*/}
+                    {/*    <Route path={"inventories"} element={<GetAllEndpointTiles title={"Authors"} url={`http://localhost:8080/api/v1/inventories`}/>}>*/}
+                    {/*        <Route path={":id"} element={<GetEndpointCard title={"GetBy"} url={`http://localhost:8080/api/v1/inventories/`}/>}/>*/}
+                    {/*    </Route>*/}
+                    {/*    <Route path={"userreviews"} element={<GetAllEndpointTiles title={"Authors"} url={`http://localhost:8080/api/v1/userreviews`}/>}>*/}
+                    {/*        <Route path={":id"} element={<GetEndpointCard title={"GetBy"} url={`http://localhost:8080/api/v1/userreviews/`}/>}/>*/}
+                    {/*    </Route>*/}
                     </Route>
+
+                    {/*navigation*/}
                     <Route path="/api/v1/books" element={<BookOverviewPage/>} />
                     <Route path="/catalog" element={<Catalog />} />
                     <Route path="/about" element={<AboutUs />} />
