@@ -39,6 +39,7 @@ function App() {
                             <Route path={":id"} element={<GetEndpointCard title={"GetBy"} url={`http://localhost:8080/api/v1/userreviews/`}/>}/>
                         </Route>
                     </Route>
+                    <Route path="/api/v1/books" element={<BookOverviewPage/>} />
                     <Route path="/catalog" element={<Catalog />} />
                     <Route path="/about" element={<AboutUs />} />
                     <Route path="/contact" element={<Contact />} />
