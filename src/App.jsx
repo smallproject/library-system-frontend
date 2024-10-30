@@ -12,7 +12,12 @@ import Catalog from "./pages/Catalog.jsx";
 import Contact from "./pages/Contact.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import Header from "./components/Header/Header.jsx";
+
+// books
 import BookOverviewPage from "./pages/Book/Overview.jsx";
+import BookCardViewPage from "./pages/Book/CardView.jsx";
+import BookCardUpdatePage from "./pages/Book/CardUpdateView.jsx";
+import BookCardCreatePage from "./pages/Book/CardCreateView.jsx";
 import Profile from "./pages/Profile.jsx";
 import SignIn from "./pages/SignIn.jsx";
 import SignUp from "./pages/SignUp.jsx";
