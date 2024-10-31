@@ -1,5 +1,5 @@
 import "./Overview.css"
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
@@ -17,12 +17,22 @@ function Overview() {
             toggleIsLoading(true);
 
             try {
-                const response = await axios.get('http://localhost:8080/api/v1/books', {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    }
-                });
+                let response;
+                if (token) {
+                    response = await axios.get('http://localhost:8080/api/v1/books', {
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                        }
+                    });
+                } else {
+                    response = await axios.get('http://localhost:8080/api/v1/books', {
+                        headers: {
+                            "Content-Type": "application/json",
+                        }
+                    });
+                }
+
                 console.log(response);
                 setBooks(response.data);
             } catch (e) {
@@ -36,7 +46,7 @@ function Overview() {
     }, []);
 
     return (
-        <>
+        <section>
             <article className={"overview container"}>
                 <table>
                     <thead>
@@ -79,7 +89,7 @@ function Overview() {
                 {isLoading && <p>Loading...</p>}
                 {error && <p>Error:... er is iets mis gegaan: {error.message}</p>}
             </article>
-        </>
+        </section>
     );
 }
 
