@@ -1,6 +1,6 @@
 import "./Card.css"
 import React, {useEffect} from 'react';
-import {useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 
 function CardView() {
@@ -97,6 +97,8 @@ function CardView() {
                 {deleteBook && <p className={"confirm-info"}>Book has been deleted</p>}
                 {book ? (
                     <ul className={"data-info-list"}>
+                        <li className={"data-info-item"}><span className={"link-return-overview"}><Link to={"/api/v1/books"}>Go back</Link></span></li>
+
                         {(roles.includes("ROLE_ADMIN") || roles.includes("LIBRARY_STAFF")) && (
                             <span className={"buttons"}>
                             {!deleteBook ? (
