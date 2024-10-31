@@ -50,6 +50,8 @@ function CardView() {
         if(typeof book === 'object' && book !== null && book !== undefined) {
             return Object.entries(book)
                 .filter(([key]) => key !== "id")
+                .filter(([key]) => key !== "userReviewOutputDtos")
+                .filter(([key]) => key !== "inventoryOutputDtos")
                 .map(([key, value]) => (
                     <li key={key} className={"data-info-item"}>
                         <span className={"data-info-label"}>{key}</span>
