@@ -10,6 +10,9 @@ function Overview() {
     const [error, setError] = useState(false);
     const navigate = useNavigate();
 
+    // Get roles from localStage and parse them
+    const roles = JSON.parse(localStorage.getItem('role')) || [];
+
     useEffect(() => {
         async function fetchBooks() {
 
@@ -75,10 +78,15 @@ function Overview() {
 
                                     >Details
                                     </button>
-                                    <button
-                                        onClick={() => navigate(`/api/v1/books/update/${book.id}`)}
-                                    >Edit</button>
-                                    <button>Delete</button>
+
+                                    {(roles.includes("ROLE_ADMIN") || roles.includes("LIBRARY_STAFF")) && (
+                                        <>
+                                            <button
+                                                onClick={() => navigate(`/api/v1/books/update/${book.id}`)}
+                                            >Edit</button>
+                                            <button>Delete</button>
+                                        </>
+                                    )}
                                 </td>
                             </tr>
                         )
