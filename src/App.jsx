@@ -48,6 +48,7 @@ function App() {
                     {/*    </Route>*/}
                     </Route>
 
+
                     {/*navigation*/}
                     <Route path="/api/v1/books" element={<BookOverviewPage/>} />
                     <Route path="/api/v1/books/:id" element={<BookCardViewPage/>} />
