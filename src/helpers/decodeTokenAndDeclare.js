@@ -13,10 +13,10 @@ function decodeTokenAndDeclare(token) {
         localStorage.setItem('token', token);
 
         const UserId = getUserId(decodedToken.sub);
-        localStorage.setItem('UserId', UserId);
+        localStorage.setItem('userId', UserId);
 
         const Roles = decodedToken.roles;
-        localStorage.setItem('Roles', JSON.stringify(Roles));
+        localStorage.setItem('role', JSON.stringify(Roles));
 
         return "Token decoded and declared";
     } catch (e) {
