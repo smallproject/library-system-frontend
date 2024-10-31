@@ -41,8 +41,13 @@
 
 .buttons {
     text-align: left;
-    /*border: #1a1a1a 1px solid;*/
     width: 100%;
+}
+
+.buttons-update {
+    text-align: right;
+    width: 100%;
+    padding: 1rem;
 }
 
 
