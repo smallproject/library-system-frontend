@@ -11,6 +11,9 @@ function CardView() {
     const [deleteBook, setDeleteBook] = React.useState(false);
     const navigate = useNavigate();
 
+    // Get roles from localStage and parse them
+    const roles = JSON.parse(localStorage.getItem('role')) || [];
+
     useEffect(() => {
         const fetchBook = async () => {
             setLoading(true);
@@ -62,7 +65,7 @@ function CardView() {
                     Authorization: `Bearer ${token}`,
                 }
             });
-            console.log("Book deleted");
+            // console.log("Book deleted");
             setDeleteBook(true);
         } catch (e) {
             console.error(e);
@@ -86,26 +89,25 @@ function CardView() {
                 {deleteBook && <p className={"confirm-info"}>Book has been deleted</p>}
                 {book ? (
                     <ul className={"data-info-list"}>
-                        {!deleteBook ? (
+                        {(roles.includes("ROLE_ADMIN") || roles.includes("LIBRARY_STAFF")) && (
                             <span className={"buttons"}>
-                                <button
-                                    onClick={() => navigate(`/api/v1/books/update/${id}`)}
-                                >
-                                    Edit
-                                </button>
-                                <button
-                                    onClick={handleDelete}
-                                >
-                                    Delete
-                                </button>
-                            </span>
-                        ):(
-                            <span className={"buttons"}>
+                            {!deleteBook ? (
+                                <>
+                                    <button onClick={() => navigate(`/api/v1/books/update/${id}`)}>
+                                        Edit
+                                    </button>
+                                    <button onClick={handleDelete}>
+                                        Delete
+                                    </button>
+                                </>
+                            ) : (
                                 <button onClick={() => navigate("/api/v1/books")}>
                                     Return to overview
                                 </button>
-                            </span>
+                            )}
+                        </span>
                         )}
+
                         {renderObjectInfo()}
                     </ul>
                 ) : (
