@@ -21,14 +21,20 @@ function CardView() {
 
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get(`http://localhost:8080/api/v1/books/${id}`, {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    }
-                });
+
+                let response;
+                if (token) {
+                    response = await axios.get(`http://localhost:8080/api/v1/books/${id}`, {
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                        }
+                    });
+                } else  {
+                    response = await axios.get(`http://localhost:8080/api/v1/books/${id}`);
+                }
                 setBook(response.data);
-                console.log(response.data)
+                // console.log(response.data)
             } catch (e) {
                 console.error(e);
                 setError(e);
