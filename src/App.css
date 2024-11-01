@@ -25,15 +25,17 @@ main {
 }
 
 section {
-    /*border: 1px solid black;*/
     display: flex;
     align-items: center;
     /*max-width: 1000rem;*/
-    height: 1240px;
+    height: auto;
     width: 100%;
     object-fit: cover;
 
+    flex-shrink: 1;
     min-height: 50vw;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .App {
