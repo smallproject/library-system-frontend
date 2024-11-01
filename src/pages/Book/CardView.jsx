@@ -94,6 +94,7 @@ function CardView() {
     return (
         <>
             <article className={"card"}>
+                <h1>{book?.title}</h1>
                 {deleteBook && <p className={"confirm-info"}>Book has been deleted</p>}
                 {book ? (
                     <ul className={"data-info-list"}>
