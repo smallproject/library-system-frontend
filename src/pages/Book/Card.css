@@ -31,6 +31,9 @@
 .data-info-update-value {
     width: 50%;
     height: 2rem;
+    color: #1a1a1a;
+    background-color: #ffffff;
+
 }
 .data-info-update-value a {
     color: #555;
