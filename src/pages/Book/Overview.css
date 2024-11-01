@@ -12,6 +12,10 @@ th, td {
     text-align: left;
 }
 
+th {
+    border-bottom: #1a1a1a 2px solid;
+}
+
 .button-create {
     width: 100%;
     margin: 0.5em;
