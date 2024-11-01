@@ -4,10 +4,22 @@ table {
 }
 
 thead {
-    border-bottom: #1a1a1a 2px solid;
+    border-bottom: #1a1a1a 3px solid;
 }
 
 th, td {
     padding: 0.2em;
     text-align: left;
+}
+
+.button-create {
+    width: 100%;
+    margin: 0.5em;
+}
+
+.overview {
+    height: 100%;
+    width: 100%;
+    margin: 1em;
+    padding-bottom: 2em;
 }
