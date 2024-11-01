@@ -50,12 +50,16 @@ function Overview() {
 
     return (
         <section>
-            <article className={"overview container"}>
-                <table>
-                    <thead>
+            <article className={"overview"}>
+                <div className={"button-create"}>
+                    <h1>Books</h1>
                     <button
                         onClick={() => navigate('/api/v1/books/create')}
-                    >Create</button>
+                    >Create
+                    </button>
+                </div>
+                <table>
+                    <thead>
                     <tr>
                         <th>ISBN</th>
                         <th>Title</th>
