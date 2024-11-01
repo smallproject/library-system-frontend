@@ -1,6 +1,6 @@
 import "./Card.css"
 import React, {useEffect} from 'react';
-import {useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 
 function CardView() {
@@ -103,14 +103,17 @@ function CardView() {
             <h1>{book?.title}</h1>
                 {book ? (
                     <ul className={"data-info-list"}>
+                        <li className={"data-info-item"}><span className={"link-return-overview"}><Link
+                            to={"/api/v1/books"}>Go back</Link></span></li>
+
                         {renderObjectInfo()}
                         <li className={"buttons-update"}>
-                                <button
-                                    onClick={handleSubmit}
-                                >
-                                    Update
-                                </button>
-                            </li>
+                            <button
+                                onClick={handleSubmit}
+                            >
+                                Update
+                            </button>
+                        </li>
                     </ul>
                 ) : (
                     !loading && <p>No data available</p>
