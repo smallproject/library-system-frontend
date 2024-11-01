@@ -100,6 +100,7 @@ function CardView() {
     return (
         <>
             <article className={"card"}>
+            <h1>{book?.title}</h1>
                 {book ? (
                     <ul className={"data-info-list"}>
                         {renderObjectInfo()}
