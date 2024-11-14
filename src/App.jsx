@@ -25,11 +25,11 @@ import SignUp from "./pages/SignUp.jsx";
 function App() {
 
   return (
-    <>
-        <div className={"App"}>
+    // <>
+        <div className={"container"}>
             <Header/>
 
-            <main className={"main-content container"}>
+            <main className={"container container-test"}>
                 <Routes>
                     <Route path="/*" element={<Main />}>
                     {/*    <Route path={"books"} element={<GetAllEndpointTiles title={"Authors"} url={`http://localhost:8080/api/v1/books`}/>}>*/}
