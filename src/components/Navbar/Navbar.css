@@ -1,8 +1,9 @@
 .navbar {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: space-between;*/
+    /*align-items: center;*/
+
     /*background-color: #000;*/
     background-color: #8fb9ed;
     /*background-color: white;*/
@@ -13,11 +14,25 @@
 
 .row-1{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+
+    align-items: flex-end;
+    border-bottom: #213547 solid 0.5rem;
+    height: 40rem;
+
+    padding: 1rem;
+    background-image: url("src/assets/vecteezy_bookstore-aisle-interior-with-shelf-illustration_24244000.jpg");
+}
+
+.row-1-content {
+    display: flex;
+
     justify-content: flex-end;
-    align-items: baseline;
-    width: 100%;
-    border-bottom: #213547 solid 2px;
+    align-items: flex-end;
+    height: 100%;
+
+    /*border: black solid 2px;*/
+
 }
 
 .row-2{
@@ -25,7 +40,7 @@
      flex-direction: row;
      justify-content: space-between;
      align-items: center;
-     width: 100%;
+     height: 5rem;
  }
 
 .navbar-logo h1 {
@@ -54,6 +69,28 @@
 .navbar-toggle {
     display: none;
 
+}
+
+.search-bar {
+    color: white;
+    font-size: 2rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: black solid 0.3rem;
+    height: 3rem;
+    width: 50rem;
+    padding: 1rem;
+    text-align: right;
+}
+
+.search-bar:focus {
+    border: none;
+    outline: none;
+    border-bottom: black solid 0.5rem;
+}
+
+.search-bar::placeholder {
+    color: black;
 }
 
 
