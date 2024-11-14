@@ -24,7 +24,7 @@ function Navbar() {
 
 
     return (
-        <nav className={"navbar navigation"}>
+        <nav className={"container navbar"}>
             <div className={"row-1"}>
                 <div>
                     <Link to={"/api/v1/books"}>Books</Link>
