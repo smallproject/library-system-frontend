@@ -72,7 +72,7 @@
 }
 
 .search-bar {
-    color: white;
+    color: black;
     font-size: 2rem;
     background-color: transparent;
     border: none;
@@ -86,7 +86,7 @@
 .search-bar:focus {
     border: none;
     outline: none;
-    border-bottom: black solid 0.5rem;
+    border-bottom: black solid 0.3rem;
 }
 
 .search-bar::placeholder {
