@@ -2,7 +2,7 @@ import "/src/App.css";
 
 function Contact() {
     return (
-        <section>
+        <section className={"container"}>
             <article className={"contactus"}>
                 <h1>Contact Us</h1>
                 <p>Email: info@librarysystemtest.com</p>
