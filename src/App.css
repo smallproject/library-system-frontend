@@ -112,8 +112,9 @@ section {
   box-shadow: #535bf2 0px 0px 10px;
   border-radius: 1rem;
   padding: 2rem;
-  height: 30vw;
+  width: 100%;
 }
+
 
 .notfound {
   display: flex;
