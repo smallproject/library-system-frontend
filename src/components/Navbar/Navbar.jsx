@@ -57,7 +57,13 @@ function Navbar() {
                     {/*<Link to={"/api/v1/userreviews"}>User Reviews</Link>*/}
                     {/*<Link to={"/api/v1/inventories"}>Inventories</Link>*/}
                     <input className={"search-bar"} type="text" placeholder={"What are you looking for?"}/>
-                    <button className={"search-button"}>Search</button>
+                    <button
+                        className={"search-button"}
+                        type={"button"}
+                        onClick={() => navigate('/search')}
+                    >
+                        Search
+                    </button>
                 </div>
 
                 {/*<div className={"theme-toggle"} style={{*/}
