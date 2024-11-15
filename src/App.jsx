@@ -51,15 +51,17 @@ function App() {
 
 
                     {/*navigation*/}
+                    {/*books*/}
                     <Route path="/api/v1/books" element={<BookOverviewPage/>} />
+                    <Route path="/api/v1/books/create" element={<BookCardCreatePage/>} />
                     <Route path="/api/v1/books/:id" element={<BookCardViewPage/>} />
                     <Route path={"/search"} element={<SearchBooks/>}/>
+
                     <Route path="/catalog" element={<Catalog />} />
                     <Route path="/about" element={<AboutUs />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/notfound" element={<NotFound />} />
-                    {/*<Route path="/" element={<Home />} />*/}
                     <Route path={"/profile"} element={<Profile />} />
                     <Route path="/signin" element={<SignIn />} />
                     <Route path="/signup" element={<SignUp />} />
