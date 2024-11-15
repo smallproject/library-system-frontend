@@ -21,6 +21,7 @@ import BookCardCreatePage from "./pages/Book/CardCreateView.jsx";
 import Profile from "./pages/Profile.jsx";
 import SignIn from "./pages/SignIn.jsx";
 import SignUp from "./pages/SignUp.jsx";
+import SearchBooks from "./pages/SearchBooks/SearchBooks.jsx";
 
 function App() {
 
@@ -52,6 +53,7 @@ function App() {
                     {/*navigation*/}
                     <Route path="/api/v1/books" element={<BookOverviewPage/>} />
                     <Route path="/api/v1/books/:id" element={<BookCardViewPage/>} />
+                    <Route path={"/search"} element={<SearchBooks/>}/>
                     <Route path="/catalog" element={<Catalog />} />
                     <Route path="/about" element={<AboutUs />} />
                     <Route path="/contact" element={<Contact />} />
