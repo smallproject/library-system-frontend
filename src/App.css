@@ -88,7 +88,7 @@ section {
     /*border: black solid 1px;*/
 
     flex-grow: 1;
-    min-width: 1240px;
+    /*min-width: 1240px;*/
     object-fit: cover;
 }
 
