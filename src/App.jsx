@@ -65,7 +65,9 @@ function App() {
                     <Route path="/signup" element={<SignUp />} />
                 </Routes>
             </main>
-
+            <div className={"container"}>
+                <img className={"img-btm-banner"} src="src/assets/texture-1909992_1280.webp" alt="image bottom banner"/>
+            </div>
             <Footer/>
         </div>
     </>
