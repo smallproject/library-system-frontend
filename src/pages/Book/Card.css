@@ -1,3 +1,7 @@
+thead {
+    border-bottom: #1a1a1a 2px;
+}
+
 .data-info-list {
     list-style-type: none;
     padding: 0;
@@ -36,7 +40,6 @@
 
 }
 .data-info-update-value a {
-    color: #555;
     text-align: right;
     word-wrap: break-word;
     text-decoration: none;
