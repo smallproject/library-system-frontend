@@ -7,7 +7,7 @@ function Catalog() {
     const {language} = useContext(LanguageContext);
     const {title, description, description2, description3} = content[language].catalog;
     return (
-        <section>
+        <section className={"container"}>
             <article className={"catalog"}>
                 <h1>{title}</h1>
                 <br/>
