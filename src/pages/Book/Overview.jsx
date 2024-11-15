@@ -36,7 +36,7 @@ function Overview() {
                     });
                 }
 
-                console.log(response);
+                // console.log(response);
                 setBooks(response.data);
             } catch (e) {
                 console.error(e);
