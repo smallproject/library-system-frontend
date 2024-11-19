@@ -6,9 +6,9 @@ import ratingToStars from "../../helpers/ratingToStars.js";
 
 function BookTile({details}) {
     const {key, id, title, genre, isbn, descriptionsummary, publicationDate, rating} = details;
-    console.log("this is key ")
-    console.log(key)
-    console.log("this is book")
+    // console.log("this is key ")
+    // console.log(key)
+    // console.log("this is book")
     return (
         <article key={key} className={"book-tile"}>
             <div className={"tile-image"}>
