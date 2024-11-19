@@ -3,6 +3,7 @@ import BookTile from "../../components/BookTile/BookTile.jsx";
 import "../../App.css"
 import "./SearchBooks.css"
 import axios from "axios";
+import {sortTitle, sortRating, sortPublicationYear} from "../../helpers/getSorting.js";
 
 function SearchBooks() {
     const [books, setBooks] = React.useState(null);
@@ -50,9 +51,25 @@ function SearchBooks() {
     }
 
     const selectSorting = (e) => {
+        if (e.target.value === "title") {
+            console.log("title")
+            setBooks(sortTitle(books))
+        }
+
+        if (e.target.value === "rating") {
+            console.log("rating")
+            setBooks(sortRating(books))
+        }
+
+        if (e.target.value === "publicationyear") {
+            console.log("publicationyear")
+            setBooks(sortPublicationYear(books))
+        }
+
         setSorting(e.target.value)
     }
     const selectSearchFilter = (e) => {
+
         setSearchFilter(e.target.value)
     }
     return (
