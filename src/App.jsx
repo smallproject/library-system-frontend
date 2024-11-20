@@ -5,8 +5,6 @@ import Main from "./pages/Main.jsx";
 import "./App.css"
 import Login from "./pages/Login-Auth/Login-Auth.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
-import GetEndpointCard from "./components/GetEndpoint/GetEndpointCard.jsx";
-import GetAllEndpointTiles from "./components/GetAllEndpoint/GetAllEndpointTiles.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import Catalog from "./pages/Catalog.jsx";
 import Contact from "./pages/Contact.jsx";
