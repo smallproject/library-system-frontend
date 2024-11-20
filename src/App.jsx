@@ -2,7 +2,6 @@ import './App.css'
 import {Route, Routes} from "react-router-dom";
 import Main from "./pages/Main.jsx";
 
-import "./App.css"
 import Login from "./pages/Login-Auth/Login-Auth.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
 import Footer from "./components/Footer/Footer.jsx";
