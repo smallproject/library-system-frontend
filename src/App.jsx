@@ -18,6 +18,12 @@ import BookOverviewPage from "./pages/Book/Overview.jsx";
 import BookCardViewPage from "./pages/Book/CardView.jsx";
 import BookCardUpdatePage from "./pages/Book/CardUpdateView.jsx";
 import BookCardCreatePage from "./pages/Book/CardCreateView.jsx";
+// authors
+import AuthorOverviewPage from "./pages/Author/Overview.jsx";
+import AuthorCardViewPage from "./pages/Author/CardView.jsx";
+import AuthorCardUpdatePage from "./pages/Author/CardUpdateView.jsx";
+import AuthorCardCreatePage from "./pages/Author/CardCreateView.jsx";
+
 import Profile from "./pages/Profile.jsx";
 import SignIn from "./pages/SignIn.jsx";
 import SignUp from "./pages/SignUp.jsx";
