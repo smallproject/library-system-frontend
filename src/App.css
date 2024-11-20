@@ -149,6 +149,11 @@ section {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+.btm-banner {
+  height: 15rem;
+  background-image: url("./assets/texture-1909992_1280.webp");
+}
+
 .img-btm-banner {
   height: 30vw;
   width: 100%;
