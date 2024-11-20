@@ -58,6 +58,17 @@ function App() {
                     <Route path="/api/v1/books" element={<BookOverviewPage/>} />
                     <Route path="/api/v1/books/create" element={<BookCardCreatePage/>} />
                     <Route path="/api/v1/books/:id" element={<BookCardViewPage/>} />
+                    <Route path="/api/v1/books/update/:id" element={<BookCardUpdatePage/>} />
+                    {/**/}
+                    {/*authors*/}
+                    <Route path="/api/v1/authors" element={<AuthorOverviewPage/>} />
+                    <Route path="/api/v1/authors/create" element={<AuthorCardCreatePage/>} />
+                    <Route path="/api/v1/authors/:id" element={<AuthorCardViewPage/>} />
+                    <Route path="/api/v1/authors/update/:id" element={<AuthorCardUpdatePage/>} />
+                    {/**/}
+
+
+                    {/*search*/}
                     <Route path={"/search"} element={<SearchBooks/>}/>
 
                     <Route path="/catalog" element={<Catalog />} />
