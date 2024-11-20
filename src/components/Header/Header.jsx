@@ -4,7 +4,7 @@ import "./Header.css"
 
 function Header(props) {
     return (
-        <header className={"header"}>
+        <header className={"container"}>
             <Navbar {...props} />
         </header>
     );

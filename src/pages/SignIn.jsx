@@ -2,6 +2,7 @@ import {useContext} from 'react';
 import {AuthContext} from "../context/AuthContext.jsx";
 import {Link} from "react-router-dom";
 import axios from "axios";
+import decode from "../helpers/decodeTokenAndDeclare.js"
 
 function SignIn() {
     const {login} = useContext(AuthContext);
@@ -15,9 +16,18 @@ function SignIn() {
                 password: "vlekkie"
             });
             console.log(response);
+
             const authHeader = response.headers['authorization']
-            const token = authHeader.split(" ")[1];
-            login(token);
+            if (authHeader) {
+                const token = authHeader.split(" ")[1];
+
+                //helper function to decode the token
+                decode(token);
+                login(token);
+            } else {
+                throw new Error("Authorization header missing");
+            }
+
         } catch (e) {
             console.error(e);
         }

@@ -2,10 +2,11 @@ import "./Overview.css"
 import {useEffect, useState} from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import {getFullname} from "../../helpers/textHelper.js";
 
 function Overview() {
 
-    const [books, setBooks] = useState([]);
+    const [authors, setAuthors] = useState([]);
     const [isLoading, toggleIsLoading] = useState(false);
     const [error, setError] = useState(false);
     const navigate = useNavigate();
@@ -14,7 +15,7 @@ function Overview() {
     const roles = JSON.parse(localStorage.getItem('role')) || [];
 
     useEffect(() => {
-        async function fetchBooks() {
+        async function fetchAuthors() {
 
             const token = localStorage.getItem('token');
             toggleIsLoading(true);
@@ -22,14 +23,14 @@ function Overview() {
             try {
                 let response;
                 if (token) {
-                    response = await axios.get('http://localhost:8080/api/v1/books', {
+                    response = await axios.get('http://localhost:8080/api/v1/authors', {
                         headers: {
                             "Content-Type": "application/json",
                             Authorization: `Bearer ${token}`,
                         }
                     });
                 } else {
-                    response = await axios.get('http://localhost:8080/api/v1/books', {
+                    response = await axios.get('http://localhost:8080/api/v1/authors', {
                         headers: {
                             "Content-Type": "application/json",
                         }
@@ -37,7 +38,7 @@ function Overview() {
                 }
 
                 // console.log(response);
-                setBooks(response.data);
+                setAuthors(response.data);
             } catch (e) {
                 console.error(e);
                 setError(e);
@@ -45,39 +46,41 @@ function Overview() {
                 toggleIsLoading(false);
             }
         }
-        fetchBooks()
+        fetchAuthors()
     }, []);
 
     return (
         <section className={"container"}>
             <article className={"overview"}>
                 <div className={"button-create"}>
-                    <h1>Books</h1>
+                    <h1>Authors</h1>
                     <button
-                        onClick={() => navigate('/api/v1/books/create')}
+                        onClick={() => navigate('/api/v1/authors/create')}
                     >Create
                     </button>
                 </div>
                 <table>
                     <thead>
                     <tr>
-                        <th>ISBN</th>
-                        <th>Title</th>
-                        <th>Genre</th>
-                        <th>Publication Date</th>
+                        <th>Name</th>
+                        <th>Nationality</th>
+                        <th>Date of Birth</th>
+                        <th>Date of Death</th>
+                        <th>Active Years</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {books.map(book => {
+                    {authors.map(author => {
                         return (
-                            <tr key={book.id}>
-                                <td>{book.isbn}</td>
-                                <td>{book.title}</td>
-                                <td>{book.genre}</td>
-                                <td>{book.publicationDate}</td>
+                            <tr key={author.id}>
+                                <td>{getFullname(author.firstName, author.middleName, author.lastName)}</td>
+                                <td>{author.nationality}</td>
+                                <td>{author.dateOfBirth}</td>
+                                <td>{author.dateOfDeath}</td>
+                                <td>{author.activeYears}</td>
                                 <td>
                                     <button
-                                        onClick={() => navigate(`/api/v1/books/${book.id}`)}
+                                        onClick={() => navigate(`/api/v1/authors/${author.id}`)}
 
                                     >Details
                                     </button>
@@ -85,8 +88,9 @@ function Overview() {
                                     {(roles.includes("ROLE_ADMIN") || roles.includes("LIBRARY_STAFF")) && (
                                         <>
                                             <button
-                                                onClick={() => navigate(`/api/v1/books/update/${book.id}`)}
-                                            >Edit</button>
+                                                onClick={() => navigate(`/api/v1/authors/update/${author.id}`)}
+                                            >Edit
+                                            </button>
                                             <button>Delete</button>
                                         </>
                                     )}
