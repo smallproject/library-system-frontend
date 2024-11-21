@@ -79,6 +79,11 @@ function AuthContextProvider({children}) {
             user: null,
             status: 'done'
         });
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('role');
+        localStorage.removeItem('username');
+
         navigate('/');
     }
 
