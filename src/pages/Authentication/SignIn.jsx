@@ -1,8 +1,8 @@
 import {useContext} from 'react';
-import {AuthContext} from "../context/AuthContext.jsx";
+import {AuthContext} from "../../context/AuthContext.jsx";
 import {Link} from "react-router-dom";
 import axios from "axios";
-import decode from "../helpers/decodeTokenAndDeclare.js"
+import decode from "../../helpers/decodeTokenAndDeclare.js"
 
 function SignIn() {
     const {login} = useContext(AuthContext);
