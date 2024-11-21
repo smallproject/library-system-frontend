@@ -4,6 +4,8 @@ import {Link, useNavigate} from "react-router-dom";
 import {FaBars, FaTimes} from 'react-icons/fa';
 import {ThemeContext} from "../../context/ThemeContext.jsx";
 import {AuthContext} from "../../context/AuthContext.jsx";
+import profileLogo
+    from "../../assets/DALL·E 2024-11-20 13.15.57 - A clean and modern logo icon for a personal profile, featuring a minimalist user silhouette or avatar shape. The design includes smooth, rounded edges.webp";
 
 
 function Navbar() {
@@ -88,6 +90,17 @@ function Navbar() {
                     <Link to={"/catalog"}>Catalog</Link>
                     <Link to={"/about"}>About Us</Link>
                     <Link to={"/contact"}>Contact</Link>
+                    {isAuth ? (
+
+                    <Link to={"/profile"}>
+                        <div className={"logo-container"}>
+                            <img src={profileLogo} alt="Profile Logo" className={"logo-style"}/>
+                            <span className={"title"}>My Profile</span>
+                        </div>
+                    </Link>
+                    ):(
+                        <></>
+                    )};
                 </div>
 
                 <div className={"navbar-toggle"} onClick={toggleNavbar}>
