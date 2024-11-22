@@ -100,7 +100,7 @@ function CardView() {
                     <ul className={"data-info-list"}>
                         <li className={"data-info-item"}><span className={"link-return-overview"}><Link to={"/api/v1/books"}>Go back</Link></span></li>
 
-                        {(roles.includes("ROLE_ADMIN") || roles.includes("LIBRARY_STAFF")) && (
+                        {(roles.includes("ROLE_ADMIN") || roles.includes("ROLE_LIBRARY_STAFF")) && (
                             <span className={"buttons"}>
                             {!deleteBook ? (
                                 <>

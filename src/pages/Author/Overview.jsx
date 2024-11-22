@@ -54,7 +54,7 @@ function Overview() {
             <article className={"overview"}>
                 <div className={"button-create"}>
                     <h1>Authors</h1>
-                    {(roles.includes("ROLE_ADMIN") || roles.includes("LIBRARY_STAFF")) && (
+                    {(roles.includes("ROLE_ADMIN") || roles.includes("ROLE_LIBRARY_STAFF")) && (
                         <button
                             onClick={() => navigate('/api/v1/authors/create')}
                         >Create
@@ -87,7 +87,7 @@ function Overview() {
                                     >Details
                                     </button>
 
-                                    {(roles.includes("ROLE_ADMIN") || roles.includes("LIBRARY_STAFF")) && (
+                                    {(roles.includes("ROLE_ADMIN") || roles.includes("ROLE_LIBRARY_STAFF")) && (
                                         <>
                                             <button
                                                 onClick={() => navigate(`/api/v1/authors/update/${author.id}`)}
