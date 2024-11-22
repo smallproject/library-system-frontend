@@ -104,7 +104,7 @@ function SignUp() {
                         <div className={"form-group"}>
                             <label htmlFor="password"> Password</label>
                             <input
-                                type="text"
+                                type="password"
                                 id={"password"}
                                 name={"password"}
                                 value={formUser.password}
@@ -117,7 +117,7 @@ function SignUp() {
                         <div className={"form-group"}>
                             <label htmlFor="confirmPassword">Confirm Password</label>
                             <input
-                                type="text"
+                                type="password"
                                 id={"confirmPassword"}
                                 name={"confirmPassword"}
                                 value={formUser.confirmPassword}
