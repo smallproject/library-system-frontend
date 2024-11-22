@@ -13,12 +13,14 @@ function CardView() {
     const {isAuth} = useContext(AuthContext);
     const navigate = useNavigate();
 
-    if (!isAuth) {
-        navigate("/signin");
-        return null;
-    }
 
     useEffect(() => {
+
+        if (!isAuth) {
+            navigate("/signin");
+            return null;
+        }
+
         const fetchBook = async () => {
             setLoading(true);
             setError(null);
