@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import "./Profile.css"
 import mapRolesToArray from "../../helpers/mapRolesToArray.js";
+import axios from "axios";
 
 function SignUp() {
 
@@ -29,6 +30,23 @@ function SignUp() {
         }
 
         formUser.roles = mapRolesToArray(roles);
+
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.post("http://localhost:8080/api/v1/users",
+                formUser,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`, // Add the token here
+                    },
+                });
+            console.log(response);
+        } catch (e) {
+            setErrors(e);
+            console.error(e);
+        }
+
         setErrors({});
         setSuccessMessage("Signup successful!");
         console.log(formUser);
