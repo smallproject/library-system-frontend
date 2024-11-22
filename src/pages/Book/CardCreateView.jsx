@@ -1,9 +1,19 @@
 import "./Card.css"
-import React from "react";
+import React, {useContext} from "react";
 import getTodayDate from "../../helpers/getTodayDate.js";
 import axios from "axios";
+import {AuthContext} from "../../context/AuthContext.jsx";
+import {useNavigate} from "react-router-dom";
 
 function CardCreateView() {
+    const {isAuth} = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    if (!isAuth) {
+        navigate("/signin");
+        return null;
+    }
+
     const [formBook, setFormBook] = React.useState({
         title: "",
         author: "",
