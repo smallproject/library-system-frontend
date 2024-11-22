@@ -1,4 +1,4 @@
-
+/*profile stylesheet*/
 .profile-container {
     width: 80%;
     margin: 0 auto;
@@ -50,6 +50,7 @@
     text-decoration: underline;
 }
 
+/*signup stylesheet*/
 .signup-container {
     width: 100%;
     max-width: 400px;
@@ -127,4 +128,48 @@ input:focus {
 
 .submit-button:hover {
     background-color: #0056b3;
+}
+
+/*if not authenticated*/
+.contact-library-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.contact-library-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    text-align: center;
+}
+
+.contact-title {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.contact-message {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.contact-details {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.contact-footer {
+    font-size: 0.9rem;
+    color: #555;
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
 }
