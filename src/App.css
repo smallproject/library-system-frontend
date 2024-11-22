@@ -206,6 +206,26 @@ section {
   background-color: #0056b3;
 }
 
+/*contact us page*/
+.opening-hours {
+  margin-top: 40px;
+}
+
+.opening-hours h2 {
+  font-size: 1.8rem;
+  color: #343a40;
+}
+
+.opening-hours ul {
+  list-style: none;
+  padding: 0;
+}
+
+.opening-hours li {
+  font-size: 1.1rem;
+  color: #6c757d;
+}
+
 
 @keyframes logo-spin {
   from {
