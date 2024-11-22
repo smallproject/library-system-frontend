@@ -1,14 +1,22 @@
-import React, {useEffect, useState} from 'react';
-import {Link} from "react-router-dom";
+import React, {useContext, useEffect, useState} from 'react';
+import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import "../../App.css"
 import "./Profile.css"
+import {AuthContext} from "../../context/AuthContext.jsx";
 
 function Profile() {
 
     const [profileData, setProfileData] = useState({});
     const [isLoading, toggleIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    const {isAuth} = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    if (!isAuth) {
+        navigate("/signin");
+        return null;
+    }
 
     useEffect(() => {
 
@@ -41,8 +49,8 @@ function Profile() {
         fetchProfileData()
     }, []);
 
-
-    return (<section className={"container"}>
+    return (
+        <section className={"container"}>
             <article className={"container profile-container"}>
 
                 <div className={"profile-header"}>
@@ -101,7 +109,8 @@ function Profile() {
                 {isLoading && <p>Loading...</p>}
                 {error && <p>Er is iets misgegaan: {error.message}</p>}
             </article>
-        </section>);
+        </section>
+    );
 }
 
 export default Profile;
