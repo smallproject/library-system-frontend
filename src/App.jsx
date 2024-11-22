@@ -2,7 +2,6 @@ import './App.css'
 import {Route, Routes} from "react-router-dom";
 import Main from "./pages/Main/Main.jsx";
 
-import Login from "./pages/Login-Auth/Login-Auth.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import Catalog from "./pages/Catalog.jsx";
@@ -58,7 +57,6 @@ function App() {
                     <Route path="/catalog" element={<Catalog/>}/>
                     <Route path="/about" element={<AboutUs/>}/>
                     <Route path="/contact" element={<Contact/>}/>
-                    <Route path="/login" element={<Login/>}/>
                     <Route path={"/profile"} element={<Profile/>}/>
                     <Route path="/signin" element={<SignIn/>}/>
                     <Route path="/signup" element={<SignUp/>}/>
