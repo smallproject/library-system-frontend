@@ -54,10 +54,12 @@ function Overview() {
             <article className={"overview"}>
                 <div className={"button-create"}>
                     <h1>Authors</h1>
-                    <button
-                        onClick={() => navigate('/api/v1/authors/create')}
-                    >Create
-                    </button>
+                    {(roles.includes("ROLE_ADMIN") || roles.includes("LIBRARY_STAFF")) && (
+                        <button
+                            onClick={() => navigate('/api/v1/authors/create')}
+                        >Create
+                        </button>
+                    )}
                 </div>
                 <table>
                     <thead>
