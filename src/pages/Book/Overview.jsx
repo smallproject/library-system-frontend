@@ -45,6 +45,7 @@ function Overview() {
                 toggleIsLoading(false);
             }
         }
+
         fetchBooks()
     }, []);
 
@@ -53,10 +54,12 @@ function Overview() {
             <article className={"overview"}>
                 <div className={"button-create"}>
                     <h1>Books</h1>
-                    <button
-                        onClick={() => navigate('/api/v1/books/create')}
-                    >Create
-                    </button>
+                    {(roles.includes("ROLE_ADMIN") || roles.includes("LIBRARY_STAFF")) && (
+                        <button
+                            onClick={() => navigate('/api/v1/books/create')}
+                        >Create
+                        </button>
+                    )}
                 </div>
                 <table>
                     <thead>
@@ -86,7 +89,8 @@ function Overview() {
                                         <>
                                             <button
                                                 onClick={() => navigate(`/api/v1/books/update/${book.id}`)}
-                                            >Edit</button>
+                                            >Edit
+                                            </button>
                                             <button>Delete</button>
                                         </>
                                     )}
