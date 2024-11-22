@@ -9,7 +9,7 @@ function AboutUs() {
 
     return (
         <section>
-            <article className={"aboutus"}>
+            <article className={"plain-text-container"}>
                 <h1>{title}</h1>
                 <br/>
                 <p>

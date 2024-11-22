@@ -82,28 +82,23 @@ section {
     object-fit: cover;
 }
 
-.catalog {
-  text-align: justify;
-  box-shadow: #535bf2 0px 0px 10px;
-  border-radius: 1rem;
-  padding: 2rem;
-}
+.plain-text-container {
+  /*!*box-shadow: #535bf2 0px 0px 10px;*!*/
+  /*!*border-radius: 1rem;*!*/
+  /*padding: 2rem;*/
 
-.aboutus {
-   text-align: justify;
-   box-shadow: #535bf2 0px 0px 10px;
-   border-radius: 1rem;
-   padding: 2rem;
- }
 
-.contactus {
-  text-align: justify;
-  box-shadow: #535bf2 0px 0px 10px;
-  border-radius: 1rem;
-  padding: 2rem;
   width: 100%;
-}
 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  text-align: justify;
+  padding: 2rem;
+  gap: 1rem;
+}
 
 .notfound {
   display: flex;
@@ -149,16 +144,6 @@ section {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-.btm-banner {
-  height: 15rem;
-  background-image: url("./assets/texture-1909992_1280.webp");
-}
-
-.img-btm-banner {
-  height: 30vw;
-  width: 100%;
-  object-fit: cover;
-}
 
 @keyframes logo-spin {
   from {
