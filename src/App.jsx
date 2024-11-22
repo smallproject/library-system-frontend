@@ -1,6 +1,6 @@
 import './App.css'
 import {Route, Routes} from "react-router-dom";
-import Main from "./pages/Main.jsx";
+import Main from "./pages/Main/Main.jsx";
 
 import Login from "./pages/Login-Auth/Login-Auth.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
