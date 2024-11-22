@@ -13,12 +13,13 @@ function Profile() {
     const {isAuth} = useContext(AuthContext);
     const navigate = useNavigate();
 
-    if (!isAuth) {
-        navigate("/signin");
-        return null;
-    }
 
     useEffect(() => {
+
+        if (!isAuth) {
+            navigate("/signin");
+            return null;
+        }
 
         const fetchProfileData = async () => {
             toggleIsLoading(true);
@@ -105,6 +106,8 @@ function Profile() {
                 <br/>
                 <br/>
                 <p>Terug naar de <Link to="/">Homepagina</Link></p>
+
+                <p><Link to={"/signup"}>Register an Account</Link></p>
 
                 {isLoading && <p>Loading...</p>}
                 {error && <p>Er is iets misgegaan: {error.message}</p>}
