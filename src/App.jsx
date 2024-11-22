@@ -35,7 +35,7 @@ function App() {
 
             <main className={"container container-test"}>
                 <Routes>
-                    <Route path="/*" element={<Main />}>
+                    <Route path="/" element={<Main />}>
                     {/*    <Route path={"books"} element={<GetAllEndpointTiles title={"Authors"} url={`http://localhost:8080/api/v1/books`}/>}>*/}
                     {/*        <Route path={":id"} element={<GetEndpointCard title={"GetBy"} url={`/http://localhost:8080/api/v1/books`}/>}/>*/}
                     {/*    </Route>*/}
@@ -75,10 +75,10 @@ function App() {
                     <Route path="/about" element={<AboutUs />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/notfound" element={<NotFound />} />
                     <Route path={"/profile"} element={<Profile />} />
                     <Route path="/signin" element={<SignIn />} />
                     <Route path="/signup" element={<SignUp />} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </main>
             <div className={"container"}>
