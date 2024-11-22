@@ -1,15 +1,22 @@
 import "./Card.css"
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
+import {AuthContext} from "../../context/AuthContext.jsx";
 
 function CardView() {
     const {id} = useParams();
     const [book, setBook] = React.useState(null);
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(null);
-    const navigate = useNavigate();
     const [formData, setFormData] = React.useState({});
+    const {isAuth} = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    if (!isAuth) {
+        navigate("/signin");
+        return null;
+    }
 
     useEffect(() => {
         const fetchBook = async () => {
