@@ -21,9 +21,9 @@ import AuthorCardViewPage from "./pages/Author/CardView.jsx";
 import AuthorCardUpdatePage from "./pages/Author/CardUpdateView.jsx";
 import AuthorCardCreatePage from "./pages/Author/CardCreateView.jsx";
 
-import Profile from "./pages/Profile.jsx";
-import SignIn from "./pages/SignIn.jsx";
-import SignUp from "./pages/SignUp.jsx";
+import Profile from "./pages/Authentication/Profile.jsx";
+import SignIn from "./pages/Authentication/SignIn.jsx";
+import SignUp from "./pages/Authentication/SignUp.jsx";
 import SearchBooks from "./pages/SearchBooks/SearchBooks.jsx";
 
 function App() {
