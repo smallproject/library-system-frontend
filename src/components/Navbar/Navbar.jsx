@@ -108,6 +108,12 @@ function Navbar() {
                 </div>
             </div>
 
+            {isAuth ? (
+                <RightPane/>
+            ) : (
+                <></>
+            )}
+
         </nav>
     )
 }
