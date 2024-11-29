@@ -106,14 +106,17 @@ function CardView() {
         }
     }
 
+    function handleGoBack() {
+        navigate(-1);
+    }
+
     return (
         <>
             <article className={"card"}>
             <h1>{book?.title}</h1>
                 {book ? (
                     <ul className={"data-info-list"}>
-                        <li className={"data-info-item"}><span className={"link-return-overview"}><Link
-                            to={"/api/v1/books"}>Go back</Link></span></li>
+                        <li className={"data-info-item"}><span className={"link-return-overview"}><a href={"#!"} onClick={handleGoBack}>Go back</a></span></li>
 
                         {renderObjectInfo()}
                         <li className={"buttons-update"}>
