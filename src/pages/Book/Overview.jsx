@@ -1,20 +1,27 @@
 import "./Overview.css"
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import {AuthContext} from "../../context/AuthContext.jsx";
 
 function Overview() {
 
     const [books, setBooks] = useState([]);
     const [isLoading, toggleIsLoading] = useState(false);
     const [error, setError] = useState(false);
-    const navigate = useNavigate();
 
     // Get roles from localStage and parse them
     const roles = JSON.parse(localStorage.getItem('role')) || [];
+    const {isAuth} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function fetchBooks() {
+
+            if (!isAuth) {
+                navigate("/signin");
+                return null;
+            }
 
             const token = localStorage.getItem('token');
             toggleIsLoading(true);
@@ -45,6 +52,7 @@ function Overview() {
                 toggleIsLoading(false);
             }
         }
+
         fetchBooks()
     }, []);
 
@@ -53,10 +61,12 @@ function Overview() {
             <article className={"overview"}>
                 <div className={"button-create"}>
                     <h1>Books</h1>
-                    <button
-                        onClick={() => navigate('/api/v1/books/create')}
-                    >Create
-                    </button>
+                    {(roles.includes("ROLE_ADMIN") || roles.includes("ROLE_LIBRARY_STAFF")) && (
+                        <button
+                            onClick={() => navigate('/api/v1/books/create')}
+                        >Create
+                        </button>
+                    )}
                 </div>
                 <table>
                     <thead>
@@ -82,11 +92,12 @@ function Overview() {
                                     >Details
                                     </button>
 
-                                    {(roles.includes("ROLE_ADMIN") || roles.includes("LIBRARY_STAFF")) && (
+                                    {(roles.includes("ROLE_ADMIN") || roles.includes("ROLE_LIBRARY_STAFF")) && (
                                         <>
                                             <button
                                                 onClick={() => navigate(`/api/v1/books/update/${book.id}`)}
-                                            >Edit</button>
+                                            >Edit
+                                            </button>
                                             <button>Delete</button>
                                         </>
                                     )}

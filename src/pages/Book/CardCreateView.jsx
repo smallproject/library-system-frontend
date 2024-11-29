@@ -1,13 +1,33 @@
 import "./Card.css"
-import React from "react";
+import React, {useContext} from "react";
 import getTodayDate from "../../helpers/getTodayDate.js";
 import axios from "axios";
+import {AuthContext} from "../../context/AuthContext.jsx";
+import {useNavigate} from "react-router-dom";
 
 function CardCreateView() {
+    const {isAuth} = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    if (!isAuth) {
+        navigate("/signin");
+        return null;
+    }
+
     const [formBook, setFormBook] = React.useState({
+        isbn: "",
         title: "",
+        publicationDate: "",
+        genre: "",
+        pagecount: "",
+        language: "English",
+        coverImageUrl: "",
+        descriptionSummary: "",
+        rating: "",
+        copiesAvailable: "",
+        dateAdded: getTodayDate(),
+        status: "Available",
         author: "",
-        summary: ""
     });
 
     const handleSubmit = async (event) => {
@@ -95,14 +115,14 @@ function CardCreateView() {
 
 
                     <div className={"inputGroup"}>
-                        <label htmlFor="publicationdate" className={"label"}>
+                        <label htmlFor="publicationDate" className={"label"}>
                             Publication Date:
                         </label>
                         <input
                             type="date"
-                            id={"publicationdate"}
-                            name={"publicationdate"}
-                            value={formBook.publicationdate}
+                            id={"publicationDate"}
+                            name={"publicationDate"}
+                            value={formBook.publicationDate}
                             onChange={handleChange}
                             required
                             className={"input"}
@@ -158,14 +178,14 @@ function CardCreateView() {
                     </div>
 
                     <div className={"inputGroup"}>
-                        <label htmlFor="coverimageurl" className={"label"}>
+                        <label htmlFor="coverImageUrl" className={"label"}>
                             Cover Image URL:
                         </label>
                         <input
                             type="text"
-                            id={"coverimageurl"}
-                            name={"coverimageurl"}
-                            value={formBook.coverimageurl}
+                            id={"coverImageUrl"}
+                            name={"coverImageUrl"}
+                            value={formBook.coverImageUrl}
                             onChange={handleChange}
                             placeholder={"Enter Cover Image URL"}
                             required
@@ -174,15 +194,15 @@ function CardCreateView() {
                     </div>
 
                     <div className={"inputGroup"}>
-                        <label htmlFor="summary" className={"label"}>
-                            Summary:
+                        <label htmlFor="descriptionSummary" className={"label"}>
+                            Description Summary:
                         </label>
                         <textarea
-                            id={"summary"}
-                            name={"summary"}
-                            value={formBook.summary}
+                            id={"descriptionSummary"}
+                            name={"descriptionSummary"}
+                            value={formBook.descriptionSummary}
                             onChange={handleChange}
-                            placeholder={"Enter summary"}
+                            placeholder={"Enter description summary"}
                             required
                             className={"input"}
                         />

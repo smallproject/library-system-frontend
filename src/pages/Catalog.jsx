@@ -8,7 +8,7 @@ function Catalog() {
     const {title, description, description2, description3} = content[language].catalog;
     return (
         <section className={"container"}>
-            <article className={"catalog"}>
+            <article className={"plain-text-container"}>
                 <h1>{title}</h1>
                 <br/>
                 <p>

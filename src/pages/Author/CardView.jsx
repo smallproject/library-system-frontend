@@ -1,8 +1,10 @@
 import "./Card.css"
+import "../../App.css"
 import React, {useEffect} from 'react';
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {getFullname} from "../../helpers/textHelper.js";
+import getResponseForCase from "../../helpers/getResponseForCase.js";
 
 function CardView() {
     const {id} = useParams();
@@ -54,7 +56,7 @@ function CardView() {
                 .filter(([key]) => key !== "bookOutputDtos")
                 .map(([key, value]) => (
                     <li key={key} className={"data-info-item"}>
-                        <span className={"data-info-label"}>{key}</span>
+                        <span className={"data-info-label"}>{getResponseForCase(key)}</span>
                         <span className={"data-info-value"}>{value}</span>
                     </li>
                 ));
@@ -91,9 +93,13 @@ function CardView() {
         }
     }
 
+    function handleGoBack() {
+        navigate(-1);
+    }
+
     return (
-        <>
-            <article className={"card"}>
+        <section className={"container"}>
+            <article className={"plain-text-container"}>
                 <h1>
                     {author && (
                         getFullname(author.firstName, author.middleName, author.lastName)
@@ -102,10 +108,11 @@ function CardView() {
                 {deleteAuthor && <p className={"confirm-info"}>Author has been deleted</p>}
                 {author ? (
                     <ul className={"data-info-list"}>
-                        <li className={"data-info-item"}><span className={"link-return-overview"}><Link
-                            to={"/api/v1/author"}>Go back</Link></span></li>
+                        <li className={"data-info-item"}><span className={"link-return-overview"}><a
+                            href={"#!"}
+                            onClick={handleGoBack()}>Go back</a></span></li>
 
-                        {(roles.includes("ROLE_ADMIN") || roles.includes("LIBRARY_STAFF")) && (
+                        {(roles.includes("ROLE_ADMIN") || roles.includes("ROLE_LIBRARY_STAFF")) && (
                             <span className={"buttons"}>
                             {!deleteAuthor ? (
                                 <>
@@ -133,7 +140,7 @@ function CardView() {
                 {loading && <p>Loading...</p>}
                 {error && <p>Error:... er is iets mis gegaan: {error.message}</p>}
             </article>
-        </>
+        </section>
     );
 }
 
