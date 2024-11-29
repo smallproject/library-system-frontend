@@ -4,6 +4,7 @@ import React, {useContext, useEffect} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {AuthContext} from "../../context/AuthContext.jsx";
+import getResponseForCase from "../../helpers/getResponseForCase.js";
 
 function CardView() {
     const {id} = useParams();
@@ -72,7 +73,7 @@ function CardView() {
                 .filter(([key]) => key !== "inventoryOutputDtos")
                 .map(([key]) => (
                     <li key={key} className={"data-info-item"}>
-                        <span className={"data-info-label"}>{key}</span>
+                        <span className={"data-info-label"}>{getResponseForCase(key)}</span>
                         <input type={"text"} className={"data-info-update-value"} name={key} value={formData[key]} onChange={handleChange}/>
                     </li>
                 ));
