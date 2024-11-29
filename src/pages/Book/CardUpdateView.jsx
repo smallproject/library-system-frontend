@@ -1,6 +1,7 @@
 import "./Card.css"
+import "../../App.css"
 import React, {useContext, useEffect} from 'react';
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {AuthContext} from "../../context/AuthContext.jsx";
 
@@ -111,8 +112,8 @@ function CardView() {
     }
 
     return (
-        <>
-            <article className={"card"}>
+        <section className={"container"}>
+            <article className={"plain-text-container"}>
             <h1>{book?.title}</h1>
                 {book ? (
                     <ul className={"data-info-list"}>
@@ -134,7 +135,7 @@ function CardView() {
                 {loading && <p>Loading...</p>}
                 {error && <p>Error:... er is iets mis gegaan: {error.message}</p>}
             </article>
-        </>
+        </section>
     );
 }
 
