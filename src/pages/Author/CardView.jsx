@@ -1,6 +1,7 @@
 import "./Card.css"
+import "../../App.css"
 import React, {useEffect} from 'react';
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {getFullname} from "../../helpers/textHelper.js";
 
@@ -96,8 +97,8 @@ function CardView() {
     }
 
     return (
-        <>
-            <article className={"card"}>
+        <section className={"container"}>
+            <article className={"plain-text-container"}>
                 <h1>
                     {author && (
                         getFullname(author.firstName, author.middleName, author.lastName)
@@ -138,7 +139,7 @@ function CardView() {
                 {loading && <p>Loading...</p>}
                 {error && <p>Error:... er is iets mis gegaan: {error.message}</p>}
             </article>
-        </>
+        </section>
     );
 }
 
