@@ -1,9 +1,11 @@
 import "./Card.css"
+import "../../App.css"
 import React, {useContext, useEffect} from 'react';
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {getFullname} from "../../helpers/textHelper.js";
 import {AuthContext} from "../../context/AuthContext.jsx";
+import getResponseForCase from "../../helpers/getResponseForCase.js";
 
 function CardView() {
     const {id} = useParams();
@@ -70,7 +72,7 @@ function CardView() {
                 .filter(([key]) => key !== "bookOutputDtos")
                 .map(([key]) => (
                     <li key={key} className={"data-info-item"}>
-                        <span className={"data-info-label"}>{key}</span>
+                        <span className={"data-info-label"}>{getResponseForCase(key)}</span>
                         <input type={"text"} className={"data-info-update-value"} name={key} value={formData[key]} onChange={handleChange}/>
                     </li>
                 ));
@@ -110,8 +112,8 @@ function CardView() {
     }
 
     return (
-        <>
-            <article className={"card"}>
+        <section className={"container"}>
+            <article className={"plain-text-container"}>
                 <h1>
                     {author && (
                         getFullname(author.firstName, author.middleName, author.lastName)
@@ -139,7 +141,7 @@ function CardView() {
                 {loading && <p>Loading...</p>}
                 {error && <p>Error:... er is iets mis gegaan: {error.message}</p>}
             </article>
-        </>
+        </section>
     );
 }
 
