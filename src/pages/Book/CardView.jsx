@@ -3,6 +3,7 @@ import "../../App.css"
 import React, {useEffect} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
+import getResponseForCase from "../../helpers/getResponseForCase.js";
 
 function CardView() {
     const {id} = useParams();
@@ -55,7 +56,7 @@ function CardView() {
                 .filter(([key]) => key !== "inventoryOutputDtos")
                 .map(([key, value]) => (
                     <li key={key} className={"data-info-item"}>
-                        <span className={"data-info-label"}>{key}</span>
+                        <span className={"data-info-label"}>{getResponseForCase(key)}</span>
                         <span className={"data-info-value"}>{value}</span>
                     </li>
                 ));
