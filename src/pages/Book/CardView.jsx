@@ -1,6 +1,7 @@
 import "./Card.css"
+import "../../App.css"
 import React, {useEffect} from 'react';
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 
 function CardView() {
@@ -96,21 +97,24 @@ function CardView() {
     }
 
     return (
-        <>
-            <article className={"card"}>
-                <h1>{book?.title}</h1>
-                {deleteBook && <p className={"confirm-info"}>Book has been deleted</p>}
-                {book ? (
-                    <ul className={"data-info-list"}>
-                        <li className={"data-info-item"}><span className={"link-return-overview"}><Link to={"/api/v1/books"}>Go back</Link></span></li>
-                        <li className={"data-info-item"}><span className={"link-return-overview"}><a href={"#!"}
-                                                                                                     onClick={handleGoBack}>Go back</a></span>
+        <section className={"container"}>
+            <article className={"plain-text-container card"}>
+                <div className={"book-tile-image"}>
+                    <img src="../../../src/assets/colorful-doodle-sun-clouds-and-ocean-waves-fantastic-surreal-s-2D2AH5N.jpg"
+                         alt="book-image"/>
+                </div>
+                <div className={"column-detail"}>
+
+                    <h1>{book?.title}</h1>
+                    {deleteBook && <p className={"confirm-info"}>Book has been deleted</p>}
+                    {book ? (
+                        <ul className={"data-info-list"}>
                         <li className={"data-info-item"}><span className={"link-return-overview"}><a
                             href={"#!"}
                             onClick={handleGoBack}>Go back</a></span>
                         </li>
 
-                        {(roles.includes("ROLE_ADMIN") || roles.includes("ROLE_LIBRARY_STAFF")) && (
+                            {(roles.includes("ROLE_ADMIN") || roles.includes("ROLE_LIBRARY_STAFF")) && (
                             <span className={"buttons"}>
                             {!deleteBook ? (
                                 <>
@@ -137,8 +141,10 @@ function CardView() {
 
                 {loading && <p>Loading...</p>}
                 {error && <p>Error:... er is iets mis gegaan: {error.message}</p>}
+                </div>
+
             </article>
-        </>
+        </section>
     );
 }
 
