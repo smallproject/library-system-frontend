@@ -91,6 +91,10 @@ function CardView() {
         }
     }
 
+    function handleGoBack() {
+        navigate(-1);
+    }
+
     return (
         <>
             <article className={"card"}>
@@ -99,6 +103,9 @@ function CardView() {
                 {book ? (
                     <ul className={"data-info-list"}>
                         <li className={"data-info-item"}><span className={"link-return-overview"}><Link to={"/api/v1/books"}>Go back</Link></span></li>
+                        <li className={"data-info-item"}><span className={"link-return-overview"}><a href={"#!"}
+                                                                                                     onClick={handleGoBack}>Go back</a></span>
+                        </li>
 
                         {(roles.includes("ROLE_ADMIN") || roles.includes("ROLE_LIBRARY_STAFF")) && (
                             <span className={"buttons"}>
