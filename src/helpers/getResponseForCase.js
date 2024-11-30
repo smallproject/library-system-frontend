@@ -5,7 +5,7 @@ function GetResponseForCase(input) {
             return "First name";
         case "middleName":
             return "Middle name";
-        case "lastname":
+        case "lastName":
             return "Last name";
         case "dateOfBirth":
             return "Date of Birth";
@@ -35,13 +35,13 @@ function GetResponseForCase(input) {
             return "Publication Date";
         case "genre":
             return "Genre";
-        case "pagecount":
+        case "pageCount":
             return "Page Count";
         case "language":
             return "Language";
         case "coverImageUrl":
             return "Cover Image URL";
-        case "descriptionsummary":
+        case "descriptionSummary":
             return "Description Summary";
         case "rating":
             return "Rating";
