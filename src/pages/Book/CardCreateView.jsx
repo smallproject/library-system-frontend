@@ -1,25 +1,20 @@
 import "./Card.css"
-import React, {useContext} from "react";
+import {useState} from "react";
 import getTodayDate from "../../helpers/getTodayDate.js";
 import axios from "axios";
-import {AuthContext} from "../../context/AuthContext.jsx";
 import {useNavigate} from "react-router-dom";
+import hasValidRole from "../../helpers/hasValidRole.js";
 
 function CardCreateView() {
-    const {isAuth} = useContext(AuthContext);
     const navigate = useNavigate();
+    const roles = localStorage.getItem('role');
 
-    if (!isAuth) {
-        navigate("/signin");
-        return null;
-    }
-
-    const [formBook, setFormBook] = React.useState({
+    const [formBook, setFormBook] = useState({
         isbn: "",
         title: "",
         publicationDate: "",
         genre: "",
-        pagecount: "",
+        pageCount: "",
         language: "English",
         coverImageUrl: "",
         descriptionSummary: "",
@@ -29,6 +24,11 @@ function CardCreateView() {
         status: "Available",
         author: "",
     });
+
+    if (!hasValidRole(roles)) {
+        navigate("/");
+        return null;
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -146,14 +146,14 @@ function CardCreateView() {
                     </div>
 
                     <div className={"inputGroup"}>
-                        <label htmlFor="pagecount" className={"label"}>
+                        <label htmlFor="pageCount" className={"label"}>
                             Page Count:
                         </label>
                         <input
                             type="number"
-                            id={"pagecount"}
-                            name={"pagecount"}
-                            value={formBook.pagecount}
+                            id={"pageCount"}
+                            name={"pageCount"}
+                            value={formBook.pageCount}
                             onChange={handleChange}
                             placeholder={"Enter page count"}
                             required
@@ -225,14 +225,14 @@ function CardCreateView() {
                     </div>
 
                     <div className={"inputGroup"}>
-                        <label htmlFor="copiesavailable" className={"label"}>
+                        <label htmlFor="copiesAvailable" className={"label"}>
                             Copies Available:
                         </label>
                         <input
                             type="number"
-                            id={"copiesavailable"}
-                            name={"copiesavailable"}
-                            value={formBook.copiesavailable}
+                            id={"copiesAvailable"}
+                            name={"copiesAvailable"}
+                            value={formBook.copiesAvailable}
                             onChange={handleChange}
                             placeholder={"Enter Copies Available"}
                             required
@@ -241,14 +241,14 @@ function CardCreateView() {
                     </div>
 
                     <div className={"inputGroup"}>
-                        <label htmlFor="dateadded" className={"label"}>
+                        <label htmlFor="dateAdded" className={"label"}>
                             Date Added:
                         </label>
                         <input
                             type="date"
-                            id={"dateadded"}
-                            name={"dateadded"}
-                            value={formBook.dateadded || getTodayDate()}
+                            id={"dateAdded"}
+                            name={"dateAdded"}
+                            value={formBook.dateAdded || getTodayDate()}
                             onChange={handleChange}
                             placeholder={"Enter Date Added"}
                             required
