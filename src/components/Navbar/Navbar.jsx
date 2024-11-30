@@ -6,6 +6,7 @@ import {ThemeContext} from "../../context/ThemeContext.jsx";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import profileLogo
     from "../../assets/DALL·E 2024-11-20 13.15.57 - A clean and modern logo icon for a personal profile, featuring a minimalist user silhouette or avatar shape. The design includes smooth, rounded edges.webp";
+import RightPane from "../RightPane/RightPane.jsx";
 
 
 function Navbar() {
