@@ -1,10 +1,9 @@
 import "./Card.css"
 import "../../App.css"
-import React, {useContext, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {getFullname} from "../../helpers/textHelper.js";
-import {AuthContext} from "../../context/AuthContext.jsx";
 import getResponseForCase from "../../helpers/getResponseForCase.js";
 
 function CardView() {
@@ -14,14 +13,8 @@ function CardView() {
     const [error, setError] = React.useState(null);
     const navigate = useNavigate();
     const [formData, setFormData] = React.useState({});
-    const {isAuth} = useContext(AuthContext);
 
     useEffect(() => {
-
-        if (!isAuth) {
-            navigate("/signin");
-            return null;
-        }
 
         const fetchAuthor = async () => {
             setLoading(true);
@@ -123,7 +116,7 @@ function CardView() {
                     <ul className={"data-info-list"}>
                         <li className={"data-info-item"}><span className={"link-return-overview"}><a
                             href={"#!"}
-                            onClick={handleGoBack()}>Go back</a></span></li>
+                            onClick={handleGoBack}>Go back</a></span></li>
 
                         {renderObjectInfo()}
                         <li className={"buttons-update"}>
