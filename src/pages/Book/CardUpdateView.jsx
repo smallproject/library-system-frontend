@@ -1,9 +1,8 @@
 import "./Card.css"
 import "../../App.css"
-import React, {useContext, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
-import {AuthContext} from "../../context/AuthContext.jsx";
 import getResponseForCase from "../../helpers/getResponseForCase.js";
 
 function CardView() {
@@ -12,16 +11,10 @@ function CardView() {
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(null);
     const [formData, setFormData] = React.useState({});
-    const {isAuth} = useContext(AuthContext);
     const navigate = useNavigate();
 
 
     useEffect(() => {
-
-        if (!isAuth) {
-            navigate("/signin");
-            return null;
-        }
 
         const fetchBook = async () => {
             setLoading(true);
