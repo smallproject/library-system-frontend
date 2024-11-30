@@ -1,25 +1,18 @@
-import React, {useContext, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
-import "../../App.css"
-import "./Profile.css"
-import {AuthContext} from "../../context/AuthContext.jsx";
+import "../../App.css";
+import "./Profile.css";
 
 function Profile() {
 
     const [profileData, setProfileData] = useState({});
     const [isLoading, toggleIsLoading] = useState(false);
     const [error, setError] = useState(null);
-    const {isAuth} = useContext(AuthContext);
     const navigate = useNavigate();
 
 
     useEffect(() => {
-
-        if (!isAuth) {
-            navigate("/signin");
-            return null;
-        }
 
         const fetchProfileData = async () => {
             toggleIsLoading(true);
@@ -105,6 +98,7 @@ function Profile() {
                 <br/>
                 <br/>
                 <br/>
+                <button onClick={() => navigate("/profile/update")}>Update</button>
                 <p>Terug naar de <Link to="/">Homepagina</Link></p>
 
                 <p><Link to={"/signup"}>Register an Account</Link></p>
