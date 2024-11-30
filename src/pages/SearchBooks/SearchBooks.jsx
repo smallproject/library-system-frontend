@@ -20,14 +20,14 @@ function SearchBooks() {
             try {
                 let response;
                 if (token) {
-                    response = await axios.get('http://localhost:8080/api/v1/books', {
+                    response = await axios.get('http://localhost:8080/api/v1/books/search', {
                         headers: {
                             "Content-Type": "application/json",
                             Authorization: `Bearer ${token}`,
                         }
                     });
                 } else {
-                    response = await axios.get('http://localhost:8080/api/v1/books', {
+                    response = await axios.get('http://localhost:8080/api/v1/books/search', {
                         headers: {
                             "Content-Type": "application/json",
                         }
