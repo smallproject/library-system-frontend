@@ -1,8 +1,7 @@
 import "./Overview.css"
-import {useContext, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import {AuthContext} from "../../context/AuthContext.jsx";
 
 function Overview() {
 
@@ -12,16 +11,10 @@ function Overview() {
 
     // Get roles from localStage and parse them
     const roles = JSON.parse(localStorage.getItem('role')) || [];
-    const {isAuth} = useContext(AuthContext);
     const navigate = useNavigate();
 
     useEffect(() => {
         async function fetchBooks() {
-
-            if (!isAuth) {
-                navigate("/signin");
-                return null;
-            }
 
             const token = localStorage.getItem('token');
             toggleIsLoading(true);
