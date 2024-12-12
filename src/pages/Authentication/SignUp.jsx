@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import {useContext, useState} from 'react';
 import {Link} from "react-router-dom";
 import "./Profile.css"
 import mapRolesToArray from "../../helpers/mapRolesToArray.js";
@@ -12,7 +12,7 @@ function SignUp() {
     const {isAuth} = useContext(AuthContext);
 
     const [formUser, setFormUser] = useState({
-        userName: "",
+        username: "",
         password: "",
         roles: "",
     });
@@ -35,15 +35,15 @@ function SignUp() {
 
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.post("http://localhost:8080/api/v1/users",
+            await axios.post("http://localhost:8080/api/v1/users",
                 formUser,
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`, // Add the token here
+                        Authorization: `Bearer ${token}`,
                     },
                 });
-            console.log(response);
+
         } catch (e) {
             setErrors(e);
             console.error(e);
@@ -51,10 +51,9 @@ function SignUp() {
 
         setErrors({});
         setSuccessMessage("Signup successful!");
-        console.log(formUser);
     };
 
-    function handleChange(e) {
+    const handleChange = (e) => {
         const {name, value} = e.target;
         setFormUser({
             ...formUser,
@@ -70,7 +69,7 @@ function SignUp() {
 
     const validateForm = () => {
         const newErrors = {};
-        if (!formUser.userName.trim()) newErrors.userName = "Username is required";
+        if (!formUser.username.trim()) newErrors.username = "Username is required";
         if (!formUser.password) newErrors.password = "Password is required.";
         if (formUser.password.length < 6)
             newErrors.password = "Password must be at least 6 characters.";
@@ -93,12 +92,12 @@ function SignUp() {
                             <input
                                 type="text"
                                 id={"username"}
-                                name={"userName"}
-                                value={formUser.userName}
+                                name={"username"}
+                                value={formUser.username}
                                 onChange={handleChange}
-                                className={errors?.userName ? "input-error" : ""}
+                                className={errors?.username ? "input-error" : ""}
                             />
-                            {errors?.userName && <p className={"error-message"}>{errors.userName}</p>}
+                            {errors?.username && <p className={"error-message"}>{errors.username}</p>}
                         </div>
 
                         <div className={"form-group"}>

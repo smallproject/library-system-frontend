@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import "./RightPane.css"
 import {Link} from "react-router-dom";
 import hasValidRole from "../../helpers/hasValidRole.js";
 
 function RightPane() {
     const [isOpen, setIsOpen] = useState(false);
-    const userRole = JSON.parse(localStorage.getItem('role'));
+    const userRole = localStorage.getItem('roles');
 
     const togglePane = () => {
         setIsOpen(prevState => !prevState);
@@ -32,6 +32,7 @@ function RightPane() {
                     <br/>
                     <br/>
                     <h2>Dashboard</h2>
+                    <h2>Manage</h2>
                     <ul>
                         <li>
                             <Link to="/api/v1/books">Books</Link>
@@ -40,7 +41,13 @@ function RightPane() {
                             <Link to="/api/v1/authors">Authors</Link>
                         </li>
                         <li>
-                            <Link to="/api/v1//users">Users</Link>
+                            <Link to="/api/v1/inventories">Inventories</Link>
+                        </li>
+                        <li>
+                            <Link to="/api/v1/reservations">Reservations</Link>
+                        </li>
+                        <li>
+                            <Link to="/api/v1/users">Users</Link>
                         </li>
                     </ul>
                 </div>

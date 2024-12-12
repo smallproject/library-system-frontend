@@ -34,6 +34,19 @@
     margin: 5px 0;
 }
 
+.btm-banner {
+    height: 15rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("src/assets/texture-1909992_1280.webp");
+}
+
+.img-btm-banner {
+    height: 30vw;
+    width: 100%;
+    object-fit: cover;
+}
+
 @media (max-width: 768px) {
     .footer-content {
         flex-direction: column;

@@ -31,8 +31,8 @@ function CardView() {
 
                 setBook(response.data);
 
-                // initialize form data with book data on fetch
                 setFormData({
+                    id: response.data?.id,
                     isbn: response.data?.isbn || '',
                     title: response.data?.title || '',
                     publicationDate: response.data?.publicationDate || '',
@@ -45,6 +45,8 @@ function CardView() {
                     copiesAvailable: response.data?.copiesAvailable || '',
                     dateAdded: response.data?.dateAdded || '',
                     status: response.data?.status || '',
+                    userReviewOutputDtos: [],
+                    inventoryOutputDtos: []
                 });
 
             } catch (e) {
@@ -83,17 +85,16 @@ function CardView() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Formdata to submit: ",formData);
 
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.post(`http://localhost:8080/api/v1/books/${id}`, formData, {
+            await axios.put(`http://localhost:8080/api/v1/books/${id}`, formData, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
                 }
             });
-            console.log("Updated response: ",response);
+
             navigate('/api/v1/books');
         } catch (e) {
             console.error(e);
@@ -101,7 +102,7 @@ function CardView() {
         }
     }
 
-    function handleGoBack() {
+    const handleGoBack = () => {
         navigate(-1);
     }
 
@@ -116,6 +117,7 @@ function CardView() {
                         {renderObjectInfo()}
                         <li className={"buttons-update"}>
                             <button
+                                type={"button"}
                                 onClick={handleSubmit}
                             >
                                 Update

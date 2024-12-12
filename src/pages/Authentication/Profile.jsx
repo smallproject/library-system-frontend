@@ -3,10 +3,13 @@ import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import "../../App.css";
 import "./Profile.css";
+import imageSource from "/src/assets/2289_SkVNQSBGQU1PIDEwMjgtMTE5.jpg";
 
 function Profile() {
 
     const [profileData, setProfileData] = useState({});
+    const [profilePhoto, setProfilePhoto] = useState(null);
+    const [address, setaddress] = useState({});
     const [isLoading, toggleIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
@@ -32,7 +35,8 @@ function Profile() {
                 }
 
                 setProfileData(response.data);
-                console.log(response.data);
+                fetchAddress(response?.data.id);
+                fetchProfilePhoto(response?.data.id);
             } catch (e) {
                 console.error(e);
                 setError(e);
@@ -40,6 +44,66 @@ function Profile() {
                 toggleIsLoading(false);
             }
         }
+
+
+        const fetchAddress = async (userId) => {
+            toggleIsLoading(true);
+            setError(null);
+
+            try {
+                const token = localStorage.getItem("token");
+
+                let response;
+                if (token) {
+                    response = await axios.get(`http://localhost:8080/api/v1/addresses/${userId}`, {
+                        headers: {
+                            "Content-Type": "application/json", Authorization: `Bearer ${token}`,
+                        }
+                    });
+                }
+
+                setaddress(response.data);
+            } catch (e) {
+                console.error(e);
+                setError(e);
+            } finally {
+                toggleIsLoading(false);
+            }
+        }
+
+        const fetchProfilePhoto = async (userId) => {
+            toggleIsLoading(true);
+            setError(null);
+
+            try {
+                const token = localStorage.getItem("token");
+
+                let response;
+                if (token) {
+                    response = await axios.get(`http://localhost:8080/api/v1/users/photo/${userId}`, {
+                        headers: {
+                            "Content-Type": "application/json", Authorization: `Bearer ${token}`,
+                        }
+                    });
+
+                    if (response.data.ok) {
+                        console.log(response.data);
+                        const blob = await response.data.blob();
+                        const imageUrl = URL.createObjectURL(blob);
+                        setProfilePhoto(imageUrl);
+                    } else {
+                    console.error('Failed to fetch image');
+                }
+                }
+
+            } catch (e) {
+                console.error(e);
+                setError(e);
+            } finally {
+                toggleIsLoading(false);
+            }
+        }
+
         fetchProfileData()
     }, []);
 
@@ -49,13 +113,14 @@ function Profile() {
 
                 <div className={"profile-header"}>
                     <img
-                        src="/src/assets/DALL·E%202024-11-20%2013.15.57%20-%20A%20clean%20and%20modern%20logo%20icon%20for%20a%20personal%20profile,%20featuring%20a%20minimalist%20user%20silhouette%20or%20avatar%20shape.%20The%20design%20includes%20smooth,%20rounded%20edges.webp"
+                        src={profilePhoto ? profilePhoto : imageSource}
                         alt="profile image"
                         className={"profile-picture"}
                     />
                     <h1 className={"profile-name"}>{profileData?.name}</h1>
                     <p className={"profile-bio"}>{profileData?.bio}</p>
                 </div>
+                <button type={"button"} onClick={() => navigate('/profile/uploadimage')}>Change Photo</button>
 
 
                 <br/>
@@ -65,13 +130,22 @@ function Profile() {
                     <p><strong>Gebruikersnaam:</strong> hardcoded-test</p>
                     <p><strong>Email:</strong> hardcoded@test.com</p>
                     <p>
-                        <strong>Location:</strong> {profileData?.location}
-                    </p>
-                    <p>
                         <strong>Email:</strong>
                         <a href={`mailto:${profileData?.email}`} className={"profile-email"}>
                             {profileData?.email}
                         </a>
+                    </p>
+                    <p>
+                        <strong>Location:</strong> {profileData?.location}
+                    </p>
+                    <p>
+                        <strong>Street:</strong> {address?.street}
+                    </p>
+                    <p>
+                        <strong>House No:</strong> {address?.houseNo}
+                    </p>
+                    <p>
+                        <strong>Post Code:</strong> {address?.postCode}
                     </p>
                 </div>
 
@@ -98,10 +172,8 @@ function Profile() {
                 <br/>
                 <br/>
                 <br/>
-                <button onClick={() => navigate("/profile/update")}>Update</button>
+                <button type={"button"} onClick={() => navigate("/profile/update")}>Update</button>
                 <p>Terug naar de <Link to="/">Homepagina</Link></p>
-
-                <p><Link to={"/signup"}>Register an Account</Link></p>
 
                 {isLoading && <p>Loading...</p>}
                 {error && <p>Er is iets misgegaan: {error.message}</p>}

@@ -1,4 +1,4 @@
-.book-tile {
+.bookReview-tile {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -42,5 +42,4 @@
 
     height: 20rem;
     width: 10rem;
-    /*border: #1a1a1a 1px solid;*/
 }

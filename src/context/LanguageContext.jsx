@@ -6,7 +6,7 @@ function LanguageContextProvider({children}) {
     const storedLanguage = localStorage.getItem('language');
     const [language, setLanguage] = useState(storedLanguage||"nl");
 
-    function setLanguageAndStore(language) {
+    const setLanguageAndStore = (language) => {
         setLanguage(language);
         localStorage.setItem("language", language);
     }

@@ -3,9 +3,9 @@ function ratingToStars(rating, maxStars = 5) {
         throw new Error(`Rating must be between 0 and ${maxStars}`);
     }
 
-    const fullStars = Math.floor(rating); // Number of full stars
-    const halfStar = rating % 1 >= 0.5 ? 1 : 0; // Check if there’s a half star
-    const emptyStars = maxStars - fullStars - halfStar; // Remaining empty stars
+    const fullStars = Math.floor(rating);
+    const halfStar = rating % 1 >= 0.5 ? 1 : 0;
+    const emptyStars = maxStars - fullStars - halfStar;
 
     return '★'.repeat(fullStars) + '☆'.repeat(emptyStars) + (halfStar ? '½' : '');
 }

@@ -35,3 +35,27 @@
 .home-actions .home-button:hover {
     background-color: #0056b3;
 }
+
+.dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Dark background */
+    pointer-events: none; /* Mouse can interact with elements below the overlay */
+    z-index: 1;
+    mix-blend-mode: multiply; /* Makes the overlay blend with the content */
+    overflow: hidden;
+}
+
+.dark-overlay::before {
+    content: '';
+    position: absolute;
+    width: 200px; /* Diameter of the light */
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 60%);
+    border-radius: 50%; /* Circular shape */
+    pointer-events: none;
+    mix-blend-mode: screen; /* Blends the light effect with the overlay */
+}

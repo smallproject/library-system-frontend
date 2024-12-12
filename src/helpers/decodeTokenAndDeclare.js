@@ -27,14 +27,14 @@ function decodeTokenAndDeclare(token) {
     }
 
 
-    function getUserId(sub) {
+    const getUserId = (sub) => {
         if (!sub || !sub.includes('::')) {
             return null;
         }
         return sub.split('::')[0];
     }
 
-    function getUsername(sub) {
+    const getUsername = (sub) => {
         if (!sub || !sub.includes('::')) {
             return null;
         }

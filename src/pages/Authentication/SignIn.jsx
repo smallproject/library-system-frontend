@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import {useContext, useState} from 'react';
 import {AuthContext} from "../../context/AuthContext.jsx";
 import {Link} from "react-router-dom";
 import axios from "axios";
@@ -13,7 +13,7 @@ function SignIn() {
     });
     const [errors, setErrors] = useState(null);
 
-    async function handleSubmit(e) {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         const formErrors = validateForm();
         if (Object.keys(formErrors).length > 0) {
@@ -29,13 +29,11 @@ function SignIn() {
         setErrors("");
         try {
             const response = await axios.post('http://localhost:8080/api/v1/login', formUser);
-            console.log(response);
-
             const authHeader = response.headers['authorization']
+
             if (authHeader) {
                 const token = authHeader.split(" ")[1];
 
-                //helper function to decode the token
                 decode(token);
                 login(token);
             } else {
@@ -48,7 +46,7 @@ function SignIn() {
         }
     }
 
-    function handleChange(e) {
+    const handleChange = (e) => {
         const {name, value} = e.target;
         setFormUser({...formUser, [name]: value});
     }

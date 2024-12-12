@@ -1,14 +1,11 @@
-import "./Card.css"
-import {useState} from "react";
-import getTodayDate from "../../helpers/getTodayDate.js";
+import "./Card.css";
+import "../../App.css";
+import React, {useState} from "react";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
-import hasValidRole from "../../helpers/hasValidRole.js";
+import getTodayDate from "../../helpers/getExpiryDate.js";
 
 function CardCreateView() {
-    const navigate = useNavigate();
-    const roles = localStorage.getItem('role');
-
+    const [createBook, setCreateBook] = React.useState(false);
     const [formBook, setFormBook] = useState({
         isbn: "",
         title: "",
@@ -25,18 +22,11 @@ function CardCreateView() {
         author: "",
     });
 
-    if (!hasValidRole(roles)) {
-        navigate("/");
-        return null;
-    }
-
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log("New Book created: ");
-        console.log(formBook);
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.post("http://localhost:8080/api/v1/books",
+            await axios.post("http://localhost:8080/api/v1/books",
                 formBook,
                 {
                     headers: {
@@ -44,8 +34,9 @@ function CardCreateView() {
                         Authorization: `Bearer ${token}`, // Add the token here
                     },
                 });
-            console.log(response);
+
             alert("Book is created successfully!");
+            setCreateBook(true);
         } catch (e) {
             console.error(e);
             alert("Failed to create the book.");
@@ -62,9 +53,10 @@ function CardCreateView() {
 
     return (
         <section className={"container"}>
-            <article className={"container create-container"}>
+            <article className={"plain-text-container create-container container"}>
                 <h2 className={"header"}>Create a new book</h2>
                 <form onSubmit={handleSubmit} className={"form-container"}>
+                    {createBook && <p className={"confirm-info-create"}>Book has been created</p>}
                     <div className={"inputGroup"}>
                         <label htmlFor="isbn" className={"label"}>
                             ISBN:

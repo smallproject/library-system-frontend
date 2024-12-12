@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {Link, } from "react-router-dom";
+import {Link, useNavigate,} from "react-router-dom";
 import axios from "axios";
 import "../../App.css";
 import "./Profile.css";
@@ -12,9 +12,11 @@ function Profile() {
         location: "",
         email: ""
     });
+    const token = localStorage.getItem('token');
 
     const [isLoading, toggleIsLoading] = useState(false);
     const [errors, setErrors] = useState(null);
+    const navigate = useNavigate();
 
 
     const updateProfileData = async () => {
@@ -22,17 +24,16 @@ function Profile() {
         setErrors(null);
 
         try {
-            const token = localStorage.getItem('token');
             const username = localStorage.getItem('username');
-            const response = await axios.post(`http://localhost:8080/api/v1/users/${username}/profile`,
+            await axios.put(`http://localhost:8080/api/v1/users/profile/${username}`,
                 profileData,
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`, // Add the token here
+                        Authorization: `Bearer ${token}`,
                     },
                 });
-            console.log(response.data);
+
         } catch (e) {
             console.error(e);
             setErrors(e);
@@ -41,15 +42,13 @@ function Profile() {
         }
     }
 
-    function handleSubmit(e) {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        const username = localStorage.getItem('username');
-        console.log(`http://localhost:8080/api/v1/users/${username}/profile`);
-        console.log(profileData);
         updateProfileData();
+        navigate('/profile');
     }
 
-    function handleChange(e) {
+    const handleChange = (e) => {
         const {name, value} = e.target;
         setProfileData({
             ...profileData,
@@ -71,6 +70,7 @@ function Profile() {
                             value={profileData.name}
                             onChange={handleChange}
                             className={errors?.name ? "input-error" : ""}
+                            required
                         />
                     </div>
                     <div className={"form-group"}>
@@ -81,6 +81,7 @@ function Profile() {
                             value={profileData.bio}
                             onChange={handleChange}
                             className={errors?.bio ? "input-error" : ""}
+                            required
                         />
                     </div>
                     <div className={"form-group"}>
@@ -92,21 +93,23 @@ function Profile() {
                             value={profileData.location}
                             onChange={handleChange}
                             className={errors?.location ? "input-error" : ""}
+                            required
                         />
                     </div>
                     <div className={"form-group"}>
                         <label htmlFor="email"> Email</label>
                         <input
-                            type="text"
+                            type="email"
                             id={"email"}
                             name={"email"}
                             value={profileData.email}
                             onChange={handleChange}
                             className={errors?.email ? "input-error" : ""}
+                            required
                         />
                     </div>
 
-                    <button onClick={"submit"}>Save</button>
+                    <button type={"submit"}>Save</button>
                 </form>
 
                 <br/>

@@ -5,6 +5,8 @@ import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {getFullname} from "../../helpers/textHelper.js";
 import getResponseForCase from "../../helpers/getResponseForCase.js";
+import BookTile from "../../components/BookTile/BookTile.jsx";
+import hasValidRole from "../../helpers/hasValidRole.js";
 
 function CardView() {
     const {id} = useParams();
@@ -14,8 +16,7 @@ function CardView() {
     const [deleteAuthor, setDeleteAuthor] = React.useState(false);
     const navigate = useNavigate();
 
-    // Get roles from localStage and parse them
-    const roles = JSON.parse(localStorage.getItem('role')) || [];
+    const roles = localStorage.getItem('roles') || [];
 
     useEffect(() => {
         const fetchAuthor = async () => {
@@ -37,7 +38,7 @@ function CardView() {
                     response = await axios.get(`http://localhost:8080/api/v1/authors/${id}`);
                 }
                 setAuthor(response.data);
-                // console.log(response.data)
+
             } catch (e) {
                 console.error(e);
                 setError(e);
@@ -75,7 +76,7 @@ function CardView() {
                     Authorization: `Bearer ${token}`,
                 }
             });
-            // console.log("Author deleted");
+
             setDeleteAuthor(true);
         } catch (e) {
             console.error(e);
@@ -85,7 +86,7 @@ function CardView() {
         }
     }
 
-    function handleDelete() {
+    const handleDelete = () => {
 
         const userConfirmed = confirm("Are you sure you want to delete this author?");
         if (userConfirmed) {
@@ -93,52 +94,73 @@ function CardView() {
         }
     }
 
-    function handleGoBack() {
+    const handleGoBack = () => {
         navigate(-1);
     }
 
     return (
         <section className={"container"}>
-            <article className={"plain-text-container"}>
-                <h1>
-                    {author && (
-                        getFullname(author.firstName, author.middleName, author.lastName)
-                    )}
-                </h1>
-                {deleteAuthor && <p className={"confirm-info"}>Author has been deleted</p>}
-                {author ? (
-                    <ul className={"data-info-list"}>
-                        <li className={"data-info-item"}><span className={"link-return-overview"}><a
-                            href={"#!"}
-                            onClick={handleGoBack()}>Go back</a></span></li>
+            <article className={"plain-text-container card"}>
+                <div className={"author-tile-image"}>
+                    <img
+                        src="../../../src/assets/vecteezy_profile-of-a-young-man-with-dreadlocks-gazing-upwards_51947644.jpeg"
+                        alt="book-image"/>
+                </div>
+                <div className={"column-detail"}>
+                    <h1>
+                        {author && (
+                            getFullname(author.firstName, author.middleName, author.lastName)
+                        )}
+                    </h1>
+                    {deleteAuthor && <p className={"confirm-info"}>Author has been deleted</p>}
+                    {author ? (
+                        <ul className={"data-info-list"}>
+                            <li className={"data-info-item"}><span className={"link-return-overview"}><a
+                                href={"#!"}
+                                onClick={handleGoBack}>Go back</a></span></li>
 
-                        {(roles.includes("ROLE_ADMIN") || roles.includes("ROLE_LIBRARY_STAFF")) && (
-                            <span className={"buttons"}>
+                            {hasValidRole(roles) && (
+                                <span className={"buttons"}>
                             {!deleteAuthor ? (
                                 <>
-                                    <button onClick={() => navigate(`/api/v1/authors/update/${id}`)}>
+                                    <button type={"button"} onClick={() => navigate(`/api/v1/authors/update/${id}`)}>
                                         Edit
                                     </button>
-                                    <button onClick={handleDelete}>
+                                    <button type={"button"} onClick={handleDelete}>
                                         Delete
                                     </button>
                                 </>
                             ) : (
-                                <button onClick={() => navigate("/api/v1/authors")}>
+                                <button type={"button"} onClick={() => navigate("/api/v1/authors")}>
                                     Return to overview
                                 </button>
                             )}
                         </span>
-                        )}
+                            )}
 
-                        {renderObjectInfo()}
-                    </ul>
-                ) : (
-                    !loading && <p>No data available</p>
-                )}
+                            {renderObjectInfo()}
 
-                {loading && <p>Loading...</p>}
-                {error && <p>Error:... er is iets mis gegaan: {error.message}</p>}
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div className={"container column-tiles"}>
+                                {author.bookOutputDtos.map(entry => {
+                                    return (
+                                        <BookTile
+                                            key={entry.id}
+                                            details={entry}
+                                        />
+                                    )
+                                })}
+                            </div>
+                        </ul>
+                    ) : (
+                        !loading && <p>No data available</p>
+                    )}
+
+                    {loading && <p>Loading...</p>}
+                    {error && <p>Error:... er is iets mis gegaan: {error.message}</p>}
+                </div>
             </article>
         </section>
     );

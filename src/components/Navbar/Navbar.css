@@ -1,14 +1,6 @@
 .navbar {
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*justify-content: space-between;*/
-    /*align-items: center;*/
-
-    /*background-color: #000;*/
     background-color: #8fb9ed;
-    /*background-color: white;*/
     padding: 1.5rem 2.5rem;
-    /*color: white;*/
     color: black;
 }
 
@@ -30,9 +22,6 @@
     justify-content: flex-end;
     align-items: flex-end;
     height: 100%;
-
-    /*border: black solid 2px;*/
-
 }
 
 .row-2{
@@ -47,7 +36,6 @@
     margin: 0;
     font-size: 3rem;
     color: black;
-    /*color: white;*/
 }
 
 .navbar-links {
@@ -58,7 +46,6 @@
 
 .navbar-links a {
     color: black;
-    /*color: white;*/
     text-decoration: none;
     font-size: 1rem;
 }
@@ -109,27 +96,32 @@
 
 
 
+.reservation-icon {
+    position: relative;
+    display: inline-block;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
 
+.icon {
+    display: inline-block;
+}
 
-
-
-
-
-
-
-
-
-/*----------------------*/
-/*.navbar ul{*/
-/*    border: white solid 2px;*/
-/*    border-radius: 15px;*/
-
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    gap: 2rem;*/
-/*    justify-content: flex-end;*/
-/*    padding: 1rem;*/
-/*}*/
+.counter-badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background: red;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 4px 8px;
+    min-width: 20px;
+    text-align: center;
+    line-height: 1;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
 
 @media (max-width: 768px) {
     .navbar-links {

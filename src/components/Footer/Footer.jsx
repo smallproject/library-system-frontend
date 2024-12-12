@@ -1,23 +1,34 @@
-import React, {useContext} from 'react';
+import {useContext} from 'react';
 import "./Footer.css";
 import {LanguageContext} from "../../context/LanguageContext.jsx";
+import {ThemeContext} from "../../context/ThemeContext.jsx";
 
 function Footer() {
     const {language, setLanguage} = useContext(LanguageContext);
+    const {theme, toggleTheme} = useContext(ThemeContext);
     const selectLanguage = (e) => {
         setLanguage(e.target.value)
     }
     return (
         <>
-            <footer className={"container footer"}>
+            <footer className={"container footer btm-banner"}>
 
 
                 <div className={"language-toggle"}>
+                    <label htmlFor="">Language</label>
                     <select value={language} onChange={selectLanguage}>
-                        <option value="nl">NL</option>
-                        <option value="en">EN</option>
+                        <option value="nl">Nederlands</option>
+                        <option value="en">English</option>
                     </select>
                 </div>
+
+                <div>
+                    <p>The current theme is {theme}</p>
+                    <button type={"button"} onClick={toggleTheme}>
+                        Toggle Theme
+                    </button>
+                </div>
+
                 <div className={"footer-content"}>
                     <div className={"footer-section library-info"}>
                         <h4>Library System</h4>

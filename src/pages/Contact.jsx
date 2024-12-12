@@ -1,8 +1,11 @@
 import "/src/App.css";
-import {useState} from "react";
+import {useContext, useState} from "react";
+import {LanguageContext} from "../context/LanguageContext.jsx";
+import content from "../content/content.json";
 
 function Contact() {
-
+    const {language} = useContext(LanguageContext);
+    const {title, description, description2, description3} = content[language].contact;
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -36,8 +39,11 @@ function Contact() {
     return (
         <section className={"container"}>
             <article className={"plain-text-container"}>
-                <h1>Contact Us</h1>
-                <p>If you have any questions or suggestions, feel free to reach out!</p>
+                <h1>{title}</h1>
+                <p>{description}</p>
+                <p>{description2}</p>
+                <p>{description3}</p>
+
 
                 <p>Email: info@librarysystemtest.com</p>
                 <p>Phone: +316-5467-4564</p>

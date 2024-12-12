@@ -28,7 +28,7 @@ section {
   display: flex;
   /*align-items: center;*/
   /*max-width: 1000rem;*/
-  /*height: auto;*/
+  flex: 1 1 auto;
   /*width: 100%;*/
   object-fit: cover;
 
@@ -88,6 +88,7 @@ section {
   /*padding: 2rem;*/
 
 
+  overflow: auto;
   width: 100%;
 
   display: flex;
@@ -98,6 +99,9 @@ section {
   text-align: justify;
   padding: 2rem;
   gap: 1rem;
+
+
+  /*border: #1a1a1a 1px solid;*/
 }
 
 .notfound {
@@ -225,7 +229,6 @@ section {
   font-size: 1.1rem;
   color: #6c757d;
 }
-
 
 @keyframes logo-spin {
   from {
