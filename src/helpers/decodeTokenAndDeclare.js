@@ -18,17 +18,27 @@ function decodeTokenAndDeclare(token) {
         const Roles = decodedToken.roles;
         localStorage.setItem('role', JSON.stringify(Roles));
 
+        const username = getUsername(decodedToken.sub);
+        localStorage.setItem('username', username);
+
         return "Token decoded and declared";
     } catch (e) {
         console.error(e);
     }
 
 
-    function getUserId(sub) {
+    const getUserId = (sub) => {
         if (!sub || !sub.includes('::')) {
             return null;
         }
         return sub.split('::')[0];
+    }
+
+    const getUsername = (sub) => {
+        if (!sub || !sub.includes('::')) {
+            return null;
+        }
+        return sub.split('::')[1];
     }
 }
 

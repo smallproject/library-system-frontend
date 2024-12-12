@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {getFullname} from "../../helpers/textHelper.js";
+import hasValidRole from "../../helpers/hasValidRole.js";
 
 function Overview() {
 
@@ -11,8 +12,7 @@ function Overview() {
     const [error, setError] = useState(false);
     const navigate = useNavigate();
 
-    // Get roles from localStage and parse them
-    const roles = JSON.parse(localStorage.getItem('role')) || [];
+    const roles = localStorage.getItem('roles') || [];
 
     useEffect(() => {
         async function fetchAuthors() {
@@ -37,7 +37,6 @@ function Overview() {
                     });
                 }
 
-                // console.log(response);
                 setAuthors(response.data);
             } catch (e) {
                 console.error(e);
@@ -54,10 +53,13 @@ function Overview() {
             <article className={"overview"}>
                 <div className={"button-create"}>
                     <h1>Authors</h1>
-                    <button
-                        onClick={() => navigate('/api/v1/authors/create')}
-                    >Create
-                    </button>
+                    {hasValidRole(roles) && (
+                        <button
+                            type={"button"}
+                            onClick={() => navigate('/api/v1/authors/create')}
+                        >Create
+                        </button>
+                    )}
                 </div>
                 <table>
                     <thead>
@@ -80,18 +82,19 @@ function Overview() {
                                 <td>{author.activeYears}</td>
                                 <td>
                                     <button
+                                        type={"button"}
                                         onClick={() => navigate(`/api/v1/authors/${author.id}`)}
-
                                     >Details
                                     </button>
 
-                                    {(roles.includes("ROLE_ADMIN") || roles.includes("LIBRARY_STAFF")) && (
+                                    {hasValidRole(roles) && (
                                         <>
                                             <button
+                                                type={"button"}
                                                 onClick={() => navigate(`/api/v1/authors/update/${author.id}`)}
                                             >Edit
                                             </button>
-                                            <button>Delete</button>
+                                            <button type={"button"}>Delete</button>
                                         </>
                                     )}
                                 </td>

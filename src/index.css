@@ -3,11 +3,11 @@
   line-height: 1.5;
   font-weight: 400;
 
+  --background-color: #ffffff;
+  --text-color: #000000;
   color-scheme: light dark;
   color: rgba(0, 0, 0, 0.73);
-  /*color: rgba(255, 255, 255, 0.87);*/
   background-color: #ffffff;
-  /*background-color: #242424;*/
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,11 +15,37 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Basic CSS Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body.dark-mode {
+  --background-color: #333333;
+  --text-color: #ffffff;
+}
+
+.global-theme {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 20px;
+  text-align: center;
+}
+
+.light-theme {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.dark-theme {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.theme-toggle {
+  padding: 20px;
+  text-align: center;
 }
 
 html, body {
@@ -27,16 +53,11 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  /*padding: 1rem;*/
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
 
-  /* Set a border or background to visualize the main's dimensions */
   font-family: Arial, sans-serif;
-  /*padding: 20px;*/
-  /*background-color: red;*/
-  /*border: #535bf2 3px solid;*/
 }
 
 
@@ -77,7 +98,6 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    /*background-color: #ffffff;*/
     background-color: rgba(255, 255, 255, 0.13);
   }
   a:hover {
@@ -85,6 +105,5 @@ button:focus-visible {
   }
   button {
     background-color: rgba(255, 255, 255, 0.13);
-    /*background-color: #f9f9f9;*/
   }
 }

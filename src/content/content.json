@@ -2,6 +2,7 @@
   "en": {
     "homepage": {
       "title": "Welcome to the Library System Libro",
+      "subtitle": "Explore, borrow, and manage books easily with our online platform.",
       "description": "This is the homepage of the website",
       "description2": "Explore our collection of books and resources to enhance your knowledge."
     },
@@ -25,12 +26,21 @@
     "notfound": {
       "title": "404 - Page Not Found",
       "description": "The page you are looking for does not exist."
+    },
+    "titles" : {
+      "search": "What are you looking for?",
+      "learnmore": "Learn More",
+      "contactus": "Contact Us",
+      "searchBtn": "Search",
+      "login": "Log in",
+      "logOutbtn": "Log out"
     }
   },
 
   "nl": {
     "homepage": {
       "title": "Welkom bij het Bibliotheeksysteem Libro",
+      "subtitle": "Ontdek, leen en beheer boeken eenvoudig met ons online platform.",
       "description": "Dit is de startpagina van de website",
       "description2": "Verken onze collectie boeken en bronnen om je kennis te vergroten."
     },
@@ -47,13 +57,22 @@
       "description3": "Ons systeem biedt niet alleen snelle en efficiënte toegang tot materialen, maar verbetert ook het leerproces door functies zoals leesgeschiedenis, bladwijzers en diepgaande annotaties, waarmee gebruikers een gepersonaliseerde digitale bibliotheekervaring kunnen creëren. Met bronnen die 24/7 beschikbaar zijn, kun je leren, ontdekken en groeien op jouw eigen tempo. Sluit je aan bij een groeiende gemeenschap van boekenliefhebbers, studenten en onderzoekers die vertrouwen op Libro voor kwaliteitscontent, zorgvuldig samengestelde collecties en een unieke leeservaring die ontworpen is om levenslang leren te inspireren."
     },
     "contact": {
-      "title": "Contacteer ons",
+      "title": "Neem contact met ons op",
       "description": "Neem contact met ons op voor vragen of feedback.",
-      "description2": "We waarderen je feedback en staan klaar om je te helpen met vragen of opmerkingen. Of je nu hulp nodig hebt bij ons platform, suggesties hebt voor verbeteringen, of gewoon je gedachten wilt delen, we luisteren graag. Ons team zet zich in voor een optimale gebruikerservaring en waardeert jouw input om onze diensten te verbeteren. Voel je vrij om contact met ons op te nemen via e-mail, telefoon of sociale media; we zullen ons best doen om je snel te helpen. Bedankt dat je voor Libro hebt gekozen, en we horen graag van je!"
+      "description2": "We waarderen je feedback en staan klaar om je te helpen met vragen of opmerkingen.",
+      "description3": " Of je nu hulp nodig hebt bij ons platform, suggesties hebt voor verbeteringen, of gewoon je gedachten wilt delen, we luisteren graag. Ons team zet zich in voor een optimale gebruikerservaring en waardeert jouw input om onze diensten te verbeteren. Voel je vrij om contact met ons op te nemen via e-mail, telefoon of sociale media; we zullen ons best doen om je snel te helpen. Bedankt dat je voor Libro hebt gekozen, en we horen graag van je!"
     },
     "notfound": {
       "title": "404 - Pagina niet gevonden",
       "description": "De pagina die je zoekt bestaat niet."
+    },
+    "titles" : {
+      "search": "Waar bent u naar op zoek?",
+      "learnmore": "Meer Informatie",
+      "contactus": "Neem Contact",
+      "searchBtn": "Zoek",
+      "login": "inloggen",
+      "logOutbtn": "uitloggen"
     }
   }
 

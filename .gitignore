@@ -22,3 +22,45 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+# Node modules directory (depends on your dependencies)
+node_modules/
+
+# Vite build output
+/dist/
+*.tgz
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+
+# WebStorm IDE files
+.idea/
+
+# OS-specific files (macOS, Windows)
+Thumbs.db
+
+# npm package lock file (optional, usually included in most projects)
+package-lock.json
+yarn.lock
+
+# Coverage reports (if using tools like Jest, Cypress, etc.)
+coverage/
+
+# Debugger configurations
+.vscode/
+
+# Temporary files
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# TypeScript declaration files (if any)
+*.d.ts
+
+# Vite cache
+.vite/
