@@ -1,17 +1,21 @@
 import "./Card.css"
+import "../../App.css"
 import React, {useEffect} from 'react';
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
+import getResponseForCase from "../../helpers/getResponseForCase.js";
 
 function CardView() {
     const {id} = useParams();
     const [book, setBook] = React.useState(null);
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(null);
-    const navigate = useNavigate();
     const [formData, setFormData] = React.useState({});
+    const navigate = useNavigate();
+
 
     useEffect(() => {
+
         const fetchBook = async () => {
             setLoading(true);
             setError(null);
@@ -27,8 +31,8 @@ function CardView() {
 
                 setBook(response.data);
 
-                // initialize form data with book data on fetch
                 setFormData({
+                    id: response.data?.id,
                     isbn: response.data?.isbn || '',
                     title: response.data?.title || '',
                     publicationDate: response.data?.publicationDate || '',
@@ -41,6 +45,8 @@ function CardView() {
                     copiesAvailable: response.data?.copiesAvailable || '',
                     dateAdded: response.data?.dateAdded || '',
                     status: response.data?.status || '',
+                    userReviewOutputDtos: [],
+                    inventoryOutputDtos: []
                 });
 
             } catch (e) {
@@ -62,7 +68,7 @@ function CardView() {
                 .filter(([key]) => key !== "inventoryOutputDtos")
                 .map(([key]) => (
                     <li key={key} className={"data-info-item"}>
-                        <span className={"data-info-label"}>{key}</span>
+                        <span className={"data-info-label"}>{getResponseForCase(key)}</span>
                         <input type={"text"} className={"data-info-update-value"} name={key} value={formData[key]} onChange={handleChange}/>
                     </li>
                 ));
@@ -79,17 +85,16 @@ function CardView() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Formdata to submit: ",formData);
 
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.post(`http://localhost:8080/api/v1/books/${id}`, formData, {
+            await axios.put(`http://localhost:8080/api/v1/books/${id}`, formData, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
                 }
             });
-            console.log("Updated response: ",response);
+
             navigate('/api/v1/books');
         } catch (e) {
             console.error(e);
@@ -97,18 +102,22 @@ function CardView() {
         }
     }
 
+    const handleGoBack = () => {
+        navigate(-1);
+    }
+
     return (
-        <>
-            <article className={"card"}>
+        <section className={"container"}>
+            <article className={"plain-text-container"}>
             <h1>{book?.title}</h1>
                 {book ? (
                     <ul className={"data-info-list"}>
-                        <li className={"data-info-item"}><span className={"link-return-overview"}><Link
-                            to={"/api/v1/books"}>Go back</Link></span></li>
+                        <li className={"data-info-item"}><span className={"link-return-overview"}><a href={"#!"} onClick={handleGoBack}>Go back</a></span></li>
 
                         {renderObjectInfo()}
                         <li className={"buttons-update"}>
                             <button
+                                type={"button"}
                                 onClick={handleSubmit}
                             >
                                 Update
@@ -122,7 +131,7 @@ function CardView() {
                 {loading && <p>Loading...</p>}
                 {error && <p>Error:... er is iets mis gegaan: {error.message}</p>}
             </article>
-        </>
+        </section>
     );
 }
 

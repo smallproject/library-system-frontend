@@ -32,4 +32,5 @@ th, td {
     width: 100%;
     margin: 1em;
     padding-bottom: 2em;
+    min-width: 1200px;
 }

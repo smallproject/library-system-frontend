@@ -1,8 +1,10 @@
 import "./Card.css"
+import "../../App.css"
 import React, {useEffect} from 'react';
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {getFullname} from "../../helpers/textHelper.js";
+import getResponseForCase from "../../helpers/getResponseForCase.js";
 
 function CardView() {
     const {id} = useParams();
@@ -13,6 +15,7 @@ function CardView() {
     const [formData, setFormData] = React.useState({});
 
     useEffect(() => {
+
         const fetchAuthor = async () => {
             setLoading(true);
             setError(null);
@@ -28,7 +31,6 @@ function CardView() {
 
                 setAuthor(response.data);
 
-                // initialize form data with author data on fetch
                 setFormData({
                     firstName: response.data?.firstName || '',
                     middleName: response.data?.middleName || '',
@@ -62,7 +64,7 @@ function CardView() {
                 .filter(([key]) => key !== "bookOutputDtos")
                 .map(([key]) => (
                     <li key={key} className={"data-info-item"}>
-                        <span className={"data-info-label"}>{key}</span>
+                        <span className={"data-info-label"}>{getResponseForCase(key)}</span>
                         <input type={"text"} className={"data-info-update-value"} name={key} value={formData[key]} onChange={handleChange}/>
                     </li>
                 ));
@@ -79,17 +81,15 @@ function CardView() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Formdata to submit: ",formData);
 
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.post(`http://localhost:8080/api/v1/authors/${id}`, formData, {
+            await axios.put(`http://localhost:8080/api/v1/authors/${id}`, formData, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
                 }
             });
-            console.log("Updated response: ",response);
             navigate('/api/v1/authors');
         } catch (e) {
             console.error(e);
@@ -97,9 +97,13 @@ function CardView() {
         }
     }
 
+    const handleGoBack = () => {
+        navigate(-1);
+    }
+
     return (
-        <>
-            <article className={"card"}>
+        <section className={"container"}>
+            <article className={"plain-text-container"}>
                 <h1>
                     {author && (
                         getFullname(author.firstName, author.middleName, author.lastName)
@@ -107,12 +111,14 @@ function CardView() {
                 </h1>
                 {author ? (
                     <ul className={"data-info-list"}>
-                        <li className={"data-info-item"}><span className={"link-return-overview"}><Link
-                            to={"/api/v1/authors"}>Go back</Link></span></li>
+                        <li className={"data-info-item"}><span className={"link-return-overview"}><a
+                            href={"#!"}
+                            onClick={handleGoBack}>Go back</a></span></li>
 
                         {renderObjectInfo()}
                         <li className={"buttons-update"}>
                             <button
+                                type={"button"}
                                 onClick={handleSubmit}
                             >
                                 Update
@@ -126,7 +132,7 @@ function CardView() {
                 {loading && <p>Loading...</p>}
                 {error && <p>Error:... er is iets mis gegaan: {error.message}</p>}
             </article>
-        </>
+        </section>
     );
 }
 

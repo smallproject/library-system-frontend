@@ -1,7 +1,14 @@
 import "./Card.css"
-import React, {useEffect} from 'react';
-import {Link, useNavigate, useParams} from "react-router-dom";
+import "../../App.css"
+import React, {useContext, useEffect, useState} from 'react';
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
+import getResponseForCase from "../../helpers/getResponseForCase.js";
+import BookReviewTile from "../../components/BookReviewTile/BookReviewTile.jsx";
+import ReviewForm from "../../components/BookReviewTile/ReviewForm.jsx";
+import {ReservationContext} from "../../context/ReservationProvider.jsx";
+import imageSource from "../../../src/assets/colorful-doodle-sun-clouds-and-ocean-waves-fantastic-surreal-s-2D2AH5N.jpg";
+import hasValidRole from "../../helpers/hasValidRole.js";
 
 function CardView() {
     const {id} = useParams();
@@ -10,9 +17,12 @@ function CardView() {
     const [error, setError] = React.useState(null);
     const [deleteBook, setDeleteBook] = React.useState(false);
     const navigate = useNavigate();
+    const [bookReviews, setBookReviews] = useState(null);
 
-    // Get roles from localStage and parse them
-    const roles = JSON.parse(localStorage.getItem('role')) || [];
+    const roles = localStorage.getItem('roles') || [];
+    const {addToReservation, reservationList} = useContext(ReservationContext);
+    const [isDisabled, toggleIsDisabled] = useState(false);
+    const [errors, setErrors] = useState(null);
 
     useEffect(() => {
         const fetchBook = async () => {
@@ -30,11 +40,10 @@ function CardView() {
                             Authorization: `Bearer ${token}`,
                         }
                     });
-                } else  {
+                } else {
                     response = await axios.get(`http://localhost:8080/api/v1/books/${id}`);
                 }
                 setBook(response.data);
-                // console.log(response.data)
             } catch (e) {
                 console.error(e);
                 setError(e);
@@ -42,19 +51,48 @@ function CardView() {
                 setLoading(false);
             }
         }
+
+        const fetchReviews = async () => {
+            setLoading(true);
+            setError(null);
+
+            try {
+                const token = localStorage.getItem('token');
+
+                let response;
+                if (token) {
+                    response = await axios.get(`http://localhost:8080/api/v1/userreviews/books/${id}`, {
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                        }
+                    });
+                } else {
+                    response = await axios.get(`http://localhost:8080/api/v1/userreviews/books/${id}`);
+                }
+                setBookReviews(response.data);
+            } catch (e) {
+                console.error(e);
+                setError(e);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchReviews()
         fetchBook()
     }, []);
 
 
     const renderObjectInfo = () => {
-        if(typeof book === 'object' && book !== null && book !== undefined) {
+        if (typeof book === 'object' && book !== null && book !== undefined) {
             return Object.entries(book)
                 .filter(([key]) => key !== "id")
                 .filter(([key]) => key !== "userReviewOutputDtos")
                 .filter(([key]) => key !== "inventoryOutputDtos")
                 .map(([key, value]) => (
                     <li key={key} className={"data-info-item"}>
-                        <span className={"data-info-label"}>{key}</span>
+                        <span className={"data-info-label"}>{getResponseForCase(key)}</span>
                         <span className={"data-info-value"}>{value}</span>
                     </li>
                 ));
@@ -73,7 +111,6 @@ function CardView() {
                     Authorization: `Bearer ${token}`,
                 }
             });
-            // console.log("Book deleted");
             setDeleteBook(true);
         } catch (e) {
             console.error(e);
@@ -83,7 +120,7 @@ function CardView() {
         }
     }
 
-    function handleDelete() {
+    const handleDelete = () => {
 
         const userConfirmed = confirm("Are you sure you want to delete this book?");
         if (userConfirmed) {
@@ -91,44 +128,107 @@ function CardView() {
         }
     }
 
-    return (
-        <>
-            <article className={"card"}>
-                <h1>{book?.title}</h1>
-                {deleteBook && <p className={"confirm-info"}>Book has been deleted</p>}
-                {book ? (
-                    <ul className={"data-info-list"}>
-                        <li className={"data-info-item"}><span className={"link-return-overview"}><Link to={"/api/v1/books"}>Go back</Link></span></li>
+    const handleGoBack = () => {
+        navigate(-1);
+    }
 
-                        {(roles.includes("ROLE_ADMIN") || roles.includes("LIBRARY_STAFF")) && (
-                            <span className={"buttons"}>
+    const handleReserve = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8080/api/v1/books/${id}`);
+            if (response) {
+
+                const exists = reservationList.some(item => item.isbn === response.data.isbn);
+                if (!exists) {
+                    addToReservation(response.data);
+                }
+                toggleIsDisabled(true);
+            } else {
+                throw new Error("Book not found.")
+            }
+        } catch (e) {
+            setErrors(e);
+            console.error(e);
+        }
+
+    }
+
+    return (
+        <section className={"container"}>
+            <article className={"plain-text-container card"}>
+                <div className={"book-tile-image"}>
+                    <img
+                        src={imageSource}
+                        alt="book-image"/>
+                </div>
+                <div className={"column-detail"}>
+
+                    <h1>{book?.title}</h1>
+                    {deleteBook && <p className={"confirm-info"}>Book has been deleted</p>}
+                    {book ? (
+                        <ul className={"data-info-list container"}>
+                            <li className={"data-info-item"}><span className={"link-return-overview"}><a
+                                href={"#!"}
+                                onClick={handleGoBack}>Go back</a></span>
+                            </li>
+
+                            <button
+                                type={"button"}
+                                onClick={handleReserve}
+                                disabled={isDisabled}>
+                                Reserve
+                            </button>
+                            {hasValidRole(roles) && (
+                                <span className={"buttons"}>
                             {!deleteBook ? (
                                 <>
-                                    <button onClick={() => navigate(`/api/v1/books/update/${id}`)}>
+                                    <button type={"button"} onClick={() => navigate(`/api/v1/books/update/${id}`)}>
                                         Edit
                                     </button>
-                                    <button onClick={handleDelete}>
+                                    <button type={"button"} onClick={handleDelete}>
                                         Delete
                                     </button>
                                 </>
                             ) : (
-                                <button onClick={() => navigate("/api/v1/books")}>
+                                <button type={"button"} onClick={() => navigate("/api/v1/books")}>
                                     Return to overview
                                 </button>
                             )}
+
                         </span>
-                        )}
+                            )}
+                            {renderObjectInfo()}
 
-                        {renderObjectInfo()}
-                    </ul>
-                ) : (
-                    !loading && <p>No data available</p>
-                )}
+                            <br/>
+                            <br/>
+                            <div className={"container"}>
 
-                {loading && <p>Loading...</p>}
-                {error && <p>Error:... er is iets mis gegaan: {error.message}</p>}
+                                {bookReviews?.map(review => {
+                                    return (
+                                        <BookReviewTile
+                                            key={review.id}
+                                            details={review}
+                                        />
+                                    )
+                                })}
+                            </div>
+                            <br/>
+                            <br/>
+                            <div className={"container reviews-container"}>
+                                <h2>Submit a Book Review</h2>
+                                <br/>
+                                <ReviewForm bookId={id}/>
+                            </div>
+                        </ul>
+                    ) : (
+                        !loading && <p>No data available</p>
+                    )}
+
+                    {loading && <p>Loading...</p>}
+                    {error && <p>Error:... er is iets mis gegaan: {error.message}</p>}
+                </div>
+
             </article>
-        </>
+        </section>
     );
 }
 

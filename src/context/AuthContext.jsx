@@ -1,7 +1,7 @@
 import {createContext, useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import {jwtDecode} from "jwt-decode";
+import decodeJwt from "../helpers/decodeJwt.js";
 
 export const AuthContext = createContext({});
 
@@ -17,8 +17,6 @@ function AuthContextProvider({children}) {
     useEffect(() => {
         const token = localStorage.getItem('token');
 
-        // if (token && isTokenValid(token)) {
-        // this is temporary
         if (token) {
             void login(token);
         } else {
@@ -30,35 +28,31 @@ function AuthContextProvider({children}) {
         }
     }, []);
 
-    async function login(token) {
+    const login = async(token) => {
         localStorage.setItem('token', token);
+        const decoded = decodeJwt(token);
 
-        const decodedToken = jwtDecode(token);
-        const id = decodedToken.sub.split("::")[0];
-        console.log("id: " +id)
+        localStorage.setItem('roles', decoded.roles)
+
+        const [userId, username] = decoded.sub.split('::').map(item => item.trim());
+        localStorage.setItem('userId', userId);
+        localStorage.setItem('username', username);
 
         try {
-            const response = await axios.get(`http://localhost:8080/api/v1/books`, {
+            await axios.get(`http://localhost:8080/api/v1/books`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`
                 }
             });
 
-            console.log(response);
-
             setAuth({
                 isAuth: true,
                 user: {
-                    // username: response.data.username,
-                    // email: response.data.email,
-                    // id: response.data.id,
-                    // role: 'user'
                 },
                 status: 'done'
             });
         } catch (e) {
-            console.log(e);
             setAuth({
                 isAuth: false,
                 user: null,
@@ -66,19 +60,20 @@ function AuthContextProvider({children}) {
             });
         }
 
-        console.log("Gebruiker is ingelogd");
-        // setAuth(true);
         navigate('/profile');
     }
 
-    function logout() {
-        console.log("Gebruiker is uitgelogd");
-        // setAuth(false);
+    const logout = () => {
         setAuth({
             isAuth: false,
             user: null,
             status: 'done'
         });
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('roles');
+        localStorage.removeItem('username');
+
         navigate('/');
     }
 

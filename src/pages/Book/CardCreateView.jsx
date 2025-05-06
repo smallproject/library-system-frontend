@@ -1,22 +1,32 @@
-import "./Card.css"
-import React from "react";
-import getTodayDate from "../../helpers/getTodayDate.js";
+import "./Card.css";
+import "../../App.css";
+import React, {useState} from "react";
 import axios from "axios";
+import getTodayDate from "../../helpers/getExpiryDate.js";
 
 function CardCreateView() {
-    const [formBook, setFormBook] = React.useState({
+    const [createBook, setCreateBook] = React.useState(false);
+    const [formBook, setFormBook] = useState({
+        isbn: "",
         title: "",
+        publicationDate: "",
+        genre: "",
+        pageCount: "",
+        language: "English",
+        coverImageUrl: "",
+        descriptionSummary: "",
+        rating: "",
+        copiesAvailable: "",
+        dateAdded: getTodayDate(),
+        status: "Available",
         author: "",
-        summary: ""
     });
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log("New Book created: ");
-        console.log(formBook);
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.post("http://localhost:8080/api/v1/books",
+            await axios.post("http://localhost:8080/api/v1/books",
                 formBook,
                 {
                     headers: {
@@ -24,8 +34,9 @@ function CardCreateView() {
                         Authorization: `Bearer ${token}`, // Add the token here
                     },
                 });
-            console.log(response);
+
             alert("Book is created successfully!");
+            setCreateBook(true);
         } catch (e) {
             console.error(e);
             alert("Failed to create the book.");
@@ -42,9 +53,10 @@ function CardCreateView() {
 
     return (
         <section className={"container"}>
-            <article className={"container create-container"}>
+            <article className={"plain-text-container create-container container"}>
                 <h2 className={"header"}>Create a new book</h2>
                 <form onSubmit={handleSubmit} className={"form-container"}>
+                    {createBook && <p className={"confirm-info-create"}>Book has been created</p>}
                     <div className={"inputGroup"}>
                         <label htmlFor="isbn" className={"label"}>
                             ISBN:
@@ -95,14 +107,14 @@ function CardCreateView() {
 
 
                     <div className={"inputGroup"}>
-                        <label htmlFor="publicationdate" className={"label"}>
+                        <label htmlFor="publicationDate" className={"label"}>
                             Publication Date:
                         </label>
                         <input
                             type="date"
-                            id={"publicationdate"}
-                            name={"publicationdate"}
-                            value={formBook.publicationdate}
+                            id={"publicationDate"}
+                            name={"publicationDate"}
+                            value={formBook.publicationDate}
                             onChange={handleChange}
                             required
                             className={"input"}
@@ -126,14 +138,14 @@ function CardCreateView() {
                     </div>
 
                     <div className={"inputGroup"}>
-                        <label htmlFor="pagecount" className={"label"}>
+                        <label htmlFor="pageCount" className={"label"}>
                             Page Count:
                         </label>
                         <input
                             type="number"
-                            id={"pagecount"}
-                            name={"pagecount"}
-                            value={formBook.pagecount}
+                            id={"pageCount"}
+                            name={"pageCount"}
+                            value={formBook.pageCount}
                             onChange={handleChange}
                             placeholder={"Enter page count"}
                             required
@@ -158,14 +170,14 @@ function CardCreateView() {
                     </div>
 
                     <div className={"inputGroup"}>
-                        <label htmlFor="coverimageurl" className={"label"}>
+                        <label htmlFor="coverImageUrl" className={"label"}>
                             Cover Image URL:
                         </label>
                         <input
                             type="text"
-                            id={"coverimageurl"}
-                            name={"coverimageurl"}
-                            value={formBook.coverimageurl}
+                            id={"coverImageUrl"}
+                            name={"coverImageUrl"}
+                            value={formBook.coverImageUrl}
                             onChange={handleChange}
                             placeholder={"Enter Cover Image URL"}
                             required
@@ -174,15 +186,15 @@ function CardCreateView() {
                     </div>
 
                     <div className={"inputGroup"}>
-                        <label htmlFor="summary" className={"label"}>
-                            Summary:
+                        <label htmlFor="descriptionSummary" className={"label"}>
+                            Description Summary:
                         </label>
                         <textarea
-                            id={"summary"}
-                            name={"summary"}
-                            value={formBook.summary}
+                            id={"descriptionSummary"}
+                            name={"descriptionSummary"}
+                            value={formBook.descriptionSummary}
                             onChange={handleChange}
-                            placeholder={"Enter summary"}
+                            placeholder={"Enter description summary"}
                             required
                             className={"input"}
                         />
@@ -205,14 +217,14 @@ function CardCreateView() {
                     </div>
 
                     <div className={"inputGroup"}>
-                        <label htmlFor="copiesavailable" className={"label"}>
+                        <label htmlFor="copiesAvailable" className={"label"}>
                             Copies Available:
                         </label>
                         <input
                             type="number"
-                            id={"copiesavailable"}
-                            name={"copiesavailable"}
-                            value={formBook.copiesavailable}
+                            id={"copiesAvailable"}
+                            name={"copiesAvailable"}
+                            value={formBook.copiesAvailable}
                             onChange={handleChange}
                             placeholder={"Enter Copies Available"}
                             required
@@ -221,14 +233,14 @@ function CardCreateView() {
                     </div>
 
                     <div className={"inputGroup"}>
-                        <label htmlFor="dateadded" className={"label"}>
+                        <label htmlFor="dateAdded" className={"label"}>
                             Date Added:
                         </label>
                         <input
                             type="date"
-                            id={"dateadded"}
-                            name={"dateadded"}
-                            value={formBook.dateadded || getTodayDate()}
+                            id={"dateAdded"}
+                            name={"dateAdded"}
+                            value={formBook.dateAdded || getTodayDate()}
                             onChange={handleChange}
                             placeholder={"Enter Date Added"}
                             required
