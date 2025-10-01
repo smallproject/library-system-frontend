@@ -7,6 +7,8 @@ import LanguageContextProvider from "./context/LanguageContext.jsx";
 import ThemeContextProvider from "./context/ThemeContext.jsx";
 import AuthContextProvider from "./context/AuthContext.jsx";
 import ReservationProvider from "./context/ReservationProvider.jsx";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
