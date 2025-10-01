@@ -80,113 +80,95 @@ function SignUp() {
     }
 
     return (
-        <section className={"container"}>
+        <div className="container py-5">
             {isAuth ? (
-                <article className={"container signup-container"}>
-                    <h2>Registreren</h2>
+                <div className="row justify-content-center">
+                    <div className="col-md-6">
+                        <h2 className="mb-4">Registreren</h2>
 
-                    {successMessage && <p className="success-message">{successMessage}</p>}
-                    <form onSubmit={handleSubmit}>
-                        <div className={"form-group"}>
-                            <label htmlFor="username"> Username</label>
-                            <input
-                                type="text"
-                                id={"username"}
-                                name={"username"}
-                                value={formUser.username}
-                                onChange={handleChange}
-                                className={errors?.username ? "input-error" : ""}
-                            />
-                            {errors?.username && <p className={"error-message"}>{errors.username}</p>}
-                        </div>
+                        {successMessage && <div className="alert alert-success">{successMessage}</div>}
+                        {errors.submit && <div className="alert alert-danger">{errors.submit}</div>}
 
-                        <div className={"form-group"}>
-                            <label htmlFor="password"> Password</label>
-                            <input
-                                type="password"
-                                id={"password"}
-                                name={"password"}
-                                value={formUser.password}
-                                onChange={handleChange}
-                                className={errors?.password ? "input-error" : ""}
-                            />
-                            {errors?.password && <p className={"error-message"}>{errors.password}</p>}
-                        </div>
-
-                        <div className={"form-group"}>
-                            <label htmlFor="confirmPassword">Confirm Password</label>
-                            <input
-                                type="password"
-                                id={"confirmPassword"}
-                                name={"confirmPassword"}
-                                value={formUser.confirmPassword}
-                                onChange={handleChange}
-                                className={errors?.confirmPassword ? "input-error" : ""}
-                            />
-                            {errors?.confirmPassword && <p className={"error-message"}>{errors.confirmPassword}</p>}
-                        </div>
-
-
-                        <div className={"roles"}>
-                            <h4>Select Roles</h4>
-                            <div className="role-checkbox">
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        name="admin"
-                                        checked={roles.admin}
-                                        onChange={handleRoleChange}
-                                    />
-                                    Admin
-                                </label>
+                        <form onSubmit={handleSubmit}>
+                            <div className="mb-3">
+                                <label htmlFor="username" className="form-label">Username</label>
+                                <input
+                                    type="text"
+                                    className={`form-control ${errors.username ? 'is-invalid' : ''}`}
+                                    id="username"
+                                    name="username"
+                                    value={formUser.username}
+                                    onChange={handleChange}
+                                />
+                                {errors.username && <div className="invalid-feedback">{errors.username}</div>}
                             </div>
-                            <div className="role-checkbox">
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        name="user"
-                                        checked={roles.user}
-                                    />
-                                    User
-                                </label>
-                            </div>
-                            <div className="role-checkbox">
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        name="libraryStaff"
-                                        checked={roles.libraryStaff}
-                                        onChange={handleRoleChange}
-                                    />
-                                    Library Staff
-                                </label>
-                            </div>
-                        </div>
 
-                        <button type={"submit"} className={"submit-button"}>
-                            Signup
-                        </button>
-                    </form>
-                    <p>Heb je al een account? Je kunt je <Link to="/signin">hier</Link> inloggen.</p>
-                </article>
-            ) : (
-                <article className="container contact-library-container">
-                    <div className="contact-library-card">
-                        <h1 className="contact-title">Register Your Membership</h1>
-                        <p className="contact-message">
-                            To register as a member, please visit your nearest library point.
+                            <div className="mb-3">
+                                <label htmlFor="password" className="form-label">Password</label>
+                                <input
+                                    type="password"
+                                    className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+                                    id="password"
+                                    name="password"
+                                    value={formUser.password}
+                                    onChange={handleChange}
+                                />
+                                {errors.password && <div className="invalid-feedback">{errors.password}</div>}
+                            </div>
+
+                            <div className="mb-3">
+                                <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
+                                <input
+                                    type="password"
+                                    className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''}`}
+                                    id="confirmPassword"
+                                    name="confirmPassword"
+                                    value={formUser.confirmPassword}
+                                    onChange={handleChange}
+                                />
+                                {errors.confirmPassword && <div className="invalid-feedback">{errors.confirmPassword}</div>}
+                            </div>
+
+                            <fieldset className="mb-4">
+                                <legend className="fs-6">Select Roles</legend>
+                                {Object.entries(roles).map(([role, checked]) => (
+                                    <div className="form-check" key={role}>
+                                        <input
+                                            className="form-check-input"
+                                            type="checkbox"
+                                            name={role}
+                                            id={role}
+                                            checked={checked}
+                                            onChange={handleRoleChange}
+                                        />
+                                        <label className="form-check-label" htmlFor={role}>
+                                            {role.charAt(0).toUpperCase() + role.slice(1)}
+                                        </label>
+                                    </div>
+                                ))}
+                            </fieldset>
+
+                            <button type="submit" className="btn btn-primary w-100">Signup</button>
+                        </form>
+
+                        <p className="mt-3">
+                            Heb je al een account? Je kunt je <Link to="/signin">hier</Link> inloggen.
                         </p>
-                        <p className="contact-details">
-                            Our friendly staff will assist you with the registration process and provide all the
-                            information you need.
-                        </p>
-                        <div className="contact-footer">
-                            <p>For more information, contact us at: <strong>support@librarysystem.com</strong></p>
-                        </div>
                     </div>
-                </article>
+                </div>
+
+
+            ): (
+                <div className="text-center">
+                    <h1 className="mb-3">Register Your Membership</h1>
+                    <p>To register as a member, please visit your nearest library point.</p>
+                    <p>Our friendly staff will assist you with the registration process and provide all the information
+                        you need.</p>
+                    <p className="mt-4">For more information, contact us at: <strong>support@librarysystem.com</strong>
+                    </p>
+                </div>
             )}
-        </section>
+        </div>
     );
 }
 
