@@ -3,7 +3,7 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import decode from "../../helpers/decodeTokenAndDeclare.js"
-import "./Profile.css"
+// import "./Profile.css"
 
 function SignIn() {
     const {login} = useContext(AuthContext);
@@ -60,46 +60,66 @@ function SignIn() {
     }
 
     return (
-        <section className={"container plain-text-container center"}>
-            <article className={"container signup-container"}>
-                <h1>Inloggen</h1>
-                <br/>
-                <p>Welcome back! Please log in to access your library account, manage your loans, and explore our collection.</p>
+        <section className="container py-5">
+            <div className="row justify-content-center">
+                <div className="col-md-6 col-lg-5">
+                    <div className="card shadow-sm">
+                        <div className="card-body">
+                            <h2 className="card-title text-center mb-4">Library Login</h2>
+                            <p className="text-muted text-center mb-4">
+                                Welcome back! Log in to manage your loans and explore our collection.
+                            </p>
 
-                <br/>
-                <br/>
-                {errors && <p className="error-message">Login failed. Please check your username and password and try again.
-                    {errors.message}</p>}
-                <form onSubmit={handleSubmit}>
-                    <div className={"form-group"}>
-                        <label htmlFor="username">Username</label>
-                        <input
-                            type="text"
-                            id={"userName"}
-                            name={"userName"}
-                            value={formUser.userName}
-                            onChange={handleChange}
-                            className={errors?.userName ? "input-error" : ""}
-                        />
-                        {errors?.userName && <p className={"error-message"}>{errors?.userName}</p>}
-                    </div>
-                    <div className={"form-group"}>
-                        <label htmlFor="passwored">Password</label>
-                        <input
-                            type="password"
-                            id={"password"}
-                            name={"password"}
-                            value={formUser.password}
-                            onChange={handleChange}
-                            className={errors?.password ? "input-error" : ""}
-                        />
-                        {errors?.password && <p className={"error-message"}>{errors?.password}</p>}
-                    </div>
-                    <button type={"submit"} className={"login-btn"}>Login</button>
-                </form>
+                            {errors && typeof errors === "string" && (
+                                <div className="alert alert-danger">{errors}</div>
+                            )}
 
-                <p>Heb je nog geen account? <Link to="/signup">Registreer</Link> je dan eerst.</p>
-            </article>
+
+                            <form onSubmit={handleSubmit}>
+                                <div className="mb-3">
+                                    <label htmlFor="userName" className="form-label">Username</label>
+                                    <input
+                                        type="text"
+                                        className={`form-control ${errors?.userName ? 'is-invalid' : ''}`}
+                                        id="userName"
+                                        name="userName"
+                                        value={formUser.userName}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                    {errors?.userName && (
+                                        <div className="invalid-feedback">{errors.userName}</div>
+                                    )}
+                                </div>
+
+                                <div className="mb-3">
+                                    <label htmlFor="password" className="form-label">Password</label>
+                                    <input
+                                        type="password"
+                                        className={`form-control ${errors?.password ? 'is-invalid' : ''}`}
+                                        id="password"
+                                        name="password"
+                                        value={formUser.password}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                    {errors?.password && (
+                                        <div className="invalid-feedback">{errors.password}</div>
+                                    )}
+                                </div>
+
+                                <button type="submit" className="btn btn-primary w-100">Login</button>
+                            </form>
+
+                            <p className="mt-4 text-center">
+                                Heb je nog geen account? <Link to="/signup">Registreer</Link> je dan eerst.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </section>
     );
 }
