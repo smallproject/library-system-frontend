@@ -1,5 +1,5 @@
 import {useContext} from 'react';
-import "./Footer.css";
+// import "./Footer.css";
 import {LanguageContext} from "../../context/LanguageContext.jsx";
 import {ThemeContext} from "../../context/ThemeContext.jsx";
 
@@ -10,39 +10,45 @@ function Footer() {
         setLanguage(e.target.value)
     }
     return (
-        <>
-            <footer className={"container footer btm-banner"}>
+        <footer className={"bg-light text-dark mt-5 py-4 border-top"}>
+            <div className="container">
+                <div className="row align-items-center mb-3">
 
-
-                <div className={"language-toggle"}>
-                    <label htmlFor="">Language</label>
-                    <select value={language} onChange={selectLanguage}>
-                        <option value="nl">Nederlands</option>
-                        <option value="en">English</option>
-                    </select>
-                </div>
-
-                <div>
-                    <p>The current theme is {theme}</p>
-                    <button type={"button"} onClick={toggleTheme}>
-                        Toggle Theme
-                    </button>
-                </div>
-
-                <div className={"footer-content"}>
-                    <div className={"footer-section library-info"}>
-                        <h4>Library System</h4>
-                        <p>&copy; {new Date().getFullYear()} All rights reserved.</p>
+                    {/*    Language Selector */}
+                    <div className="col-md-4 mb-3 mb-md-0">
+                        <label htmlFor="languageSelect" className="form-label fw-bold">Language</label>
+                        <select
+                            id="languageSelect" className="form-select"
+                            value={language} onChange={selectLanguage}>
+                            <option value="nl">Nederlands</option>
+                            <option value="en">English</option>
+                        </select>
                     </div>
 
-                    <div className={"footer-section contact-info"}>
-                        <h4>Contact Us</h4>
-                        <p>Email: info@librarysytemtest.com</p>
-                        <p>Phone: +316-5467-4564</p>
+                    {/*   Theme Toggle */}
+                    <div className="col-md-4 mb-3 mb-md-0">
+                        <p className="mb-1">The current theme is {theme}</p>
+                        <button className="btn btn-outline-primary" type={"button"} onClick={toggleTheme}>
+                            Toggle Theme
+                        </button>
                     </div>
+
+                    {/*   Contact Info */}
+                    <div className="col-md-4 text-md-end">
+                        <h5 className="fw-bold">Contact Us</h5>
+                        <p className="mb-1">Email: info@librarysytemtest.com</p>
+                        <p className="mb-0">Phone: +316-5467-4564</p>
+                    </div>
+
+                    {/*   Footer Bottom */}
+                    <div className="text-center pt-3 border-top">
+                        <p className="mb-0">&copy; {new Date().getFullYear()} Library System. All rights reserved.</p>
+                    </div>
+
                 </div>
-            </footer>
-        </>
+            </div>
+
+        </footer>
     );
 }
 
