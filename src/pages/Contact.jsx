@@ -37,76 +37,82 @@ function Contact() {
     };
 
     return (
-        <section className={"container"}>
-            <article className={"plain-text-container"}>
-                <h1>{title}</h1>
-                <p>{description}</p>
-                <p>{description2}</p>
-                <p>{description3}</p>
+        <section className="container py-5">
+            <div className="row justify-content-center">
+                <div className="col-lg-8">
+                    <article className="mb-4">
+                        <h1 className="mb-3 text-primary">{title}</h1>
+                        <p>{description}</p>
+                        <p>{description2}</p>
+                        <p>{description3}</p>
 
+                        <div className="mt-4">
+                            <p><strong>Email:</strong> info@librarysystemtest.com</p>
+                            <p><strong>Phone:</strong> +316-5467-4564</p>
+                        </div>
+                    </article>
 
-                <p>Email: info@librarysystemtest.com</p>
-                <p>Phone: +316-5467-4564</p>
+                    <form className="bg-light p-4 rounded shadow-sm" onSubmit={handleSubmit}>
+                        <h4 className="mb-3">Send Us a Message</h4>
 
+                        <div className="mb-3">
+                            <label htmlFor="name" className="form-label">Your Name</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="name"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                <br/>
-                <br/>
-                <form className="contact-form" onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="name">Your Name</label>
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            required
-                        />
+                        <div className="mb-3">
+                            <label htmlFor="email" className="form-label">Your Email</label>
+                            <input
+                                type="email"
+                                className="form-control"
+                                id="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+
+                        <div className="mb-3">
+                            <label htmlFor="message" className="form-label">Your Message</label>
+                            <textarea
+                                className="form-control"
+                                id="message"
+                                name="message"
+                                rows="5"
+                                value={formData.message}
+                                onChange={handleChange}
+                                required
+                            ></textarea>
+                        </div>
+
+                        <button type="submit" className="btn btn-primary">
+                            Send Message
+                        </button>
+                    </form>
+
+                    <div className="mt-5">
+                        <h4 className="mb-3">Our Opening Hours</h4>
+                        <ul className="list-group text-start">
+                            <li className="list-group-item"><strong>Monday:</strong> 9:00 AM - 6:00 PM</li>
+                            <li className="list-group-item"><strong>Tuesday:</strong> 9:00 AM - 6:00 PM</li>
+                            <li className="list-group-item"><strong>Wednesday:</strong> 9:00 AM - 6:00 PM</li>
+                            <li className="list-group-item"><strong>Thursday:</strong> 9:00 AM - 6:00 PM</li>
+                            <li className="list-group-item"><strong>Friday:</strong> 9:00 AM - 6:00 PM</li>
+                            <li className="list-group-item"><strong>Saturday:</strong> 10:00 AM - 3:00 PM</li>
+                            <li className="list-group-item"><strong>Sunday:</strong> Closed</li>
+                        </ul>
                     </div>
-
-                    <div className="form-group">
-                        <label htmlFor="email">Your Email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="message">Your Message</label>
-                        <textarea
-                            id="message"
-                            name="message"
-                            value={formData.message}
-                            onChange={handleChange}
-                            required
-                        ></textarea>
-                    </div>
-
-                    <button type="submit" className="submit-btn">
-                        Send Message
-                    </button>
-                </form>
-
-
-
-                <div className="opening-hours">
-                    <h2>Our Opening Hours</h2>
-                    <ul>
-                        <li><strong>Monday:</strong> 9:00 AM - 6:00 PM</li>
-                        <li><strong>Tuesday:</strong> 9:00 AM - 6:00 PM</li>
-                        <li><strong>Wednesday:</strong> 9:00 AM - 6:00 PM</li>
-                        <li><strong>Thursday:</strong> 9:00 AM - 6:00 PM</li>
-                        <li><strong>Friday:</strong> 9:00 AM - 6:00 PM</li>
-                        <li><strong>Saturday:</strong> 10:00 AM - 3:00 PM</li>
-                        <li><strong>Sunday:</strong> Closed</li>
-                    </ul>
                 </div>
-            </article>
+            </div>
         </section>
     );
 }
