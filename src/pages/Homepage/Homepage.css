@@ -1,61 +1,61 @@
-.home-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    padding: 50px;
-    background-color: #f8f9fa;
-    min-height: 100vh;
-}
+/*.home-container {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: center;*/
+/*    text-align: center;*/
+/*    padding: 50px;*/
+/*    background-color: #f8f9fa;*/
+/*    min-height: 100vh;*/
+/*}*/
 
-.home-container h1 {
-    font-size: 3rem;
-    color: #343a40;
-    margin-bottom: 20px;
-}
+/*.home-container h1 {*/
+/*    font-size: 3rem;*/
+/*    color: #343a40;*/
+/*    margin-bottom: 20px;*/
+/*}*/
 
-.home-container p {
-    font-size: 1.2rem;
-    color: #6c757d;
-    margin-bottom: 40px;
-}
+/*.home-container p {*/
+/*    font-size: 1.2rem;*/
+/*    color: #6c757d;*/
+/*    margin-bottom: 40px;*/
+/*}*/
 
-.home-actions .home-button {
-    margin: 10px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: white;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+/*.home-actions .home-button {*/
+/*    margin: 10px;*/
+/*    padding: 10px 20px;*/
+/*    font-size: 1rem;*/
+/*    color: white;*/
+/*    background-color: #007bff;*/
+/*    border: none;*/
+/*    border-radius: 5px;*/
+/*    cursor: pointer;*/
+/*    transition: background-color 0.3s ease;*/
+/*}*/
 
-.home-actions .home-button:hover {
-    background-color: #0056b3;
-}
+/*.home-actions .home-button:hover {*/
+/*    background-color: #0056b3;*/
+/*}*/
 
-.dark-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9); /* Dark background */
-    pointer-events: none; /* Mouse can interact with elements below the overlay */
-    z-index: 1;
-    mix-blend-mode: multiply; /* Makes the overlay blend with the content */
-    overflow: hidden;
-}
+/*.dark-overlay {*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background-color: rgba(0, 0, 0, 0.9); !* Dark background *!*/
+/*    pointer-events: none; !* Mouse can interact with elements below the overlay *!*/
+/*    z-index: 1;*/
+/*    mix-blend-mode: multiply; !* Makes the overlay blend with the content *!*/
+/*    overflow: hidden;*/
+/*}*/
 
-.dark-overlay::before {
-    content: '';
-    position: absolute;
-    width: 200px; /* Diameter of the light */
-    height: 200px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 60%);
-    border-radius: 50%; /* Circular shape */
-    pointer-events: none;
-    mix-blend-mode: screen; /* Blends the light effect with the overlay */
-}
+/*.dark-overlay::before {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    width: 200px; !* Diameter of the light *!*/
+/*    height: 200px;*/
+/*    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 60%);*/
+/*    border-radius: 50%; !* Circular shape *!*/
+/*    pointer-events: none;*/
+/*    mix-blend-mode: screen; !* Blends the light effect with the overlay *!*/
+/*}*/
