@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import "./Navbar.css";
+// import "./Navbar.css";
 import {Link, useNavigate} from "react-router-dom";
 import {FaBars, FaTimes} from 'react-icons/fa';
 import {ReservationContext} from "../../context/ReservationProvider.jsx";
@@ -39,88 +39,170 @@ function Navbar() {
     }
 
     return (
-        <nav className={"container navbar"}>
-            <div className={"row-1"}>
+        <nav className={"navbar navbar-expand-lg navbar-dark bg-primary"}>
+            <div className={"container-fluid"}>
 
-                <div>
+                {/* Brand */}
+                <Link className="navbar-brand" to="/">
+                    Library System Libro
+                </Link>
 
+                {/* Toggler */}
+                <button
+                    className="navbar-toggler"
+                    type="button"
+                    onClick={toggleNavbar}
+                >
+                    {isOpen ? <FaTimes /> : <FaBars />}
+                </button>
+
+                {/* Collapsible Content */}
+                <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`}>
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/catalog">Catalog</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/about">About Us</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/contact">Contact</Link>
+                        </li>
+                        {isAuth && (
+                            <li className="nav-item">
+                                <Link className="nav-link d-flex align-items-center" to="/profile">
+                                    <img src={profileLogo} alt="Profile" className="rounded-circle me-2" style={{ width: '30px', height: '30px' }} />
+                                    My Profile
+                                </Link>
+                            </li>
+                        )}
+                        <li className="nav-item">
+                            <Link className="nav-link position-relative" to="/reserve">
+                                📚
+                                {reservationList.length > 0 && (
+                                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {reservationList.length}
+                  </span>
+                                )}
+                            </Link>
+                        </li>
+                    </ul>
+
+                    {/* Search Bar */}
+                    <form className="d-flex me-3" role="search" onSubmit={(e) => { e.preventDefault(); handleSearchNavigate(); }}>
+                        <input
+                            className="form-control me-2"
+                            type="search"
+                            placeholder={search}
+                            name="title"
+                            onChange={handleChange}
+                        />
+                        <button className="btn btn-outline-light" type="submit">
+                            {searchBtn}
+                        </button>
+                    </form>
+
+                    {/* Auth Button */}
                     {isAuth ? (
-                        <div>
-                            <button
-                                type="button"
-                                onClick={logout}
-                            >
-                                {logOutbtn}
-                            </button>
-                        </div>
+                        <button className="btn btn-light" onClick={logout}>
+                            {logOutbtn}
+                        </button>
                     ) : (
-                        <div>
-                            <button
-                                type="button"
-                                onClick={() => navigate('/signin')}
-                            >
-                                {login}
-                            </button>
-                        </div>
+                        <button className="btn btn-outline-light" onClick={() => navigate('/signin')}>
+                            {login}
+                        </button>
                     )}
-
-                </div>
-                <div className={"row-1-content container"}>
-                    <input
-                        className={"search-bar"}
-                        type="text"
-                        placeholder={search}
-                        id={"title"}
-                        name={"title"}
-                        onChange={handleChange}
-                    />
-                    <button
-                        className={"search-button"}
-                        type={"button"}
-                        onClick={handleSearchNavigate}
-                    >
-                        {searchBtn}
-                    </button>
                 </div>
 
             </div>
-            <div className={"row-2"}>
 
-                <div className={"navbar-logo"}>
-                    <Link to={"/"}><h1>Library System Libro</h1></Link>
-                </div>
-                <div className={`navbar-links ${isOpen ? "open" : ""}`}>
-                    <Link to={"/catalog"}>Catalog</Link>
-                    <Link to={"/about"}>About Us</Link>
-                    <Link to={"/contact"}>Contact</Link>
-                    {isAuth ? (
+                {/*Sign-in button*/}
+                {/*<div>*/}
 
-                        <Link to={"/profile"}>
-                            <div className={"logo-container"}>
-                                <img src={profileLogo} alt="Profile Logo" className={"logo-style"}/>
-                                <span className={"title"}>My Profile</span>
-                            </div>
-                        </Link>
-                    ) : (
-                        <></>
-                    )}
+                {/*    {isAuth ? (*/}
+                {/*        <div>*/}
+                {/*            <button*/}
+                {/*                type="button"*/}
+                {/*                onClick={logout}*/}
+                {/*            >*/}
+                {/*                {logOutbtn}*/}
+                {/*            </button>*/}
+                {/*        </div>*/}
+                {/*    ) : (*/}
+                {/*        <div>*/}
+                {/*            <button*/}
+                {/*                type="button"*/}
+                {/*                onClick={() => navigate('/signin')}*/}
+                {/*            >*/}
+                {/*                {login}*/}
+                {/*            </button>*/}
+                {/*        </div>*/}
+                {/*    )}*/}
 
-                    <Link to={"/reserve"}>
-                        <div className={"reservation-icon"}>
-                        <span className="icon">
-                        📚
-                        </span>
-                            {reservationList.length > 0 && (
-                                <span className="counter-badge">{reservationList.length}</span>
-                            )}
-                        </div>
-                    </Link>
-                </div>
+                {/*</div>*/}
 
-                <div className={"navbar-toggle"} onClick={toggleNavbar}>
-                    {isOpen ? <FaTimes/> : <FaBars/>}
-                </div>
-            </div>
+
+
+                {/* Search Bar */}
+            {/*    <div className={"row-1-content container"}>*/}
+            {/*        <input*/}
+            {/*            className={"search-bar"}*/}
+            {/*            type="text"*/}
+            {/*            placeholder={search}*/}
+            {/*            id={"title"}*/}
+            {/*            name={"title"}*/}
+            {/*            onChange={handleChange}*/}
+            {/*        />*/}
+            {/*        <button*/}
+            {/*            className={"search-button"}*/}
+            {/*            type={"button"}*/}
+            {/*            onClick={handleSearchNavigate}*/}
+            {/*        >*/}
+            {/*            {searchBtn}*/}
+            {/*        </button>*/}
+            {/*    </div>*/}
+
+            {/*</div>*/}
+
+
+            {/*/!* Brand Logo*!/*/}
+            {/*<div className={"row-2"}>*/}
+
+            {/*    <div className={"navbar-logo"}>*/}
+            {/*        <Link to={"/"}><h1>Library System Libro</h1></Link>*/}
+            {/*    </div>*/}
+            {/*    <div className={`navbar-links ${isOpen ? "open" : ""}`}>*/}
+            {/*        <Link to={"/catalog"}>Catalog</Link>*/}
+            {/*        <Link to={"/about"}>About Us</Link>*/}
+            {/*        <Link to={"/contact"}>Contact</Link>*/}
+            {/*        {isAuth ? (*/}
+
+            {/*            <Link to={"/profile"}>*/}
+            {/*                <div className={"logo-container"}>*/}
+            {/*                    <img src={profileLogo} alt="Profile Logo" className={"logo-style"}/>*/}
+            {/*                    <span className={"title"}>My Profile</span>*/}
+            {/*                </div>*/}
+            {/*            </Link>*/}
+            {/*        ) : (*/}
+            {/*            <></>*/}
+            {/*        )}*/}
+
+            {/*        <Link to={"/reserve"}>*/}
+            {/*            <div className={"reservation-icon"}>*/}
+            {/*            <span className="icon">*/}
+            {/*            📚*/}
+            {/*            </span>*/}
+            {/*                {reservationList.length > 0 && (*/}
+            {/*                    <span className="counter-badge">{reservationList.length}</span>*/}
+            {/*                )}*/}
+            {/*            </div>*/}
+            {/*        </Link>*/}
+            {/*    </div>*/}
+
+            {/*    <div className={"navbar-toggle"} onClick={toggleNavbar}>*/}
+            {/*        {isOpen ? <FaTimes/> : <FaBars/>}*/}
+            {/*    </div>*/}
+            {/*</div>*/}
 
             {isAuth ? (
                 <RightPane/>
