@@ -39,6 +39,7 @@ function Contact() {
     return (
         <section className="container py-5">
             <div className="row justify-content-center">
+
                 <div className="col-lg-8">
                     <article className="mb-4">
                         <h1 className="mb-3 text-primary">{title}</h1>
@@ -99,8 +100,9 @@ function Contact() {
                         </button>
                     </form>
 
-                    <div className="mt-5">
-                        <h4 className="mb-3">Our Opening Hours</h4>
+
+                    <div className="mt-4 mb-5">
+                        <h4 className="mb-4">Our Opening Hours</h4>
                         <ul className="list-group text-start">
                             <li className="list-group-item"><strong>Monday:</strong> 9:00 AM - 6:00 PM</li>
                             <li className="list-group-item"><strong>Tuesday:</strong> 9:00 AM - 6:00 PM</li>

@@ -58,7 +58,7 @@ function App() {
             <div className="d-flex flex-column min-vh-100">
                 <div className="container-fluid py-4 flex-grow-1">
                     <div className="row">
-                        <main className={"col-12"}>
+                        <main className="col-12">
                             <Routes>
                                 <Route path="/" element={<Homepage/>}/>
 
