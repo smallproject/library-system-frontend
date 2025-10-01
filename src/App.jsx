@@ -1,4 +1,4 @@
-import './App.css'
+// import './App.css'
 import {Route, Routes} from "react-router-dom";
 import Homepage from "./pages/Homepage/Homepage.jsx";
 
@@ -45,6 +45,7 @@ import {AuthContext} from "./context/AuthContext.jsx";
 import {ThemeContext} from "./context/ThemeContext.jsx";
 
 
+
 function App() {
     const {isAuth} = useContext(AuthContext);
     const {theme, toggleTheme} = useContext(ThemeContext);
@@ -56,48 +57,83 @@ function App() {
     return (
         <div className={`global-theme ${theme === 'dark' ? 'dark-mode' : ''} `}>
             <Header/>
+            <div className="container-fluid py-4">
+                <div className="row">
+                    <main className={"col-12"}>
+                        <Routes>
+                            <Route path="/" element={<Homepage/>}/>
 
-            <main className={"container container"}>
-                <Routes>
-                    <Route path="/" element={<Homepage/>}/>
+                            <Route path="/api/v1/books"
+                                   element={<ProtectedRoute element={<BookOverviewPage/>} isAuthenticated={isAuth}/>}/>
+                            <Route path="/api/v1/books/create" element={<ProtectedRoute element={<BookCardCreatePage/>}
+                                                                                        isAuthenticated={isAuth}/>}/>
+                            <Route path="/api/v1/books/:id" element={<BookCardViewPage/>}/>
+                            <Route path="/api/v1/books/update/:id"
+                                   element={<ProtectedRoute element={<BookCardUpdatePage/>}
+                                                            isAuthenticated={isAuth}/>}/>
 
-                    <Route path="/api/v1/books" element={<ProtectedRoute element={<BookOverviewPage/>} isAuthenticated={isAuth}/>}/>
-                    <Route path="/api/v1/books/create" element={<ProtectedRoute element={<BookCardCreatePage/>} isAuthenticated={isAuth}/>}/>
-                    <Route path="/api/v1/books/:id" element={<BookCardViewPage/>}/>
-                    <Route path="/api/v1/books/update/:id" element={<ProtectedRoute element={<BookCardUpdatePage/>} isAuthenticated={isAuth}/>}/>
+                            <Route path="/api/v1/authors" element={<ProtectedRoute element={<AuthorOverviewPage/>}
+                                                                                   isAuthenticated={isAuth}/>}/>
+                            <Route path="/api/v1/authors/create"
+                                   element={<ProtectedRoute element={<AuthorCardCreatePage/>}
+                                                            isAuthenticated={isAuth}/>}/>
+                            <Route path="/api/v1/authors/:id" element={<AuthorCardViewPage/>}/>
+                            <Route path="/api/v1/authors/update/:id"
+                                   element={<ProtectedRoute element={<AuthorCardUpdatePage/>}
+                                                            isAuthenticated={isAuth}/>}/>
 
-                    <Route path="/api/v1/authors" element={<ProtectedRoute element={<AuthorOverviewPage/>} isAuthenticated={isAuth}/>}/>
-                    <Route path="/api/v1/authors/create" element={<ProtectedRoute element={<AuthorCardCreatePage/>} isAuthenticated={isAuth}/>}/>
-                    <Route path="/api/v1/authors/:id" element={<AuthorCardViewPage/>}/>
-                    <Route path="/api/v1/authors/update/:id" element={<ProtectedRoute element={<AuthorCardUpdatePage/>} isAuthenticated={isAuth}/>}/>
+                            <Route path="/api/v1/inventories"
+                                   element={<ProtectedRoute element={<InventoryOverviewPage/>}
+                                                            isAuthenticated={isAuth}/>}/>
+                            <Route path="/api/v1/inventories/create"
+                                   element={<ProtectedRoute element={<InventoryCardCreatePage/>}
+                                                            isAuthenticated={isAuth}/>}/>
+                            <Route path="/api/v1/inventories/:id"
+                                   element={<ProtectedRoute element={<InventoryCardViewPage/>}
+                                                            isAuthenticated={isAuth}/>}/>
+                            <Route path="/api/v1/inventories/update/:id"
+                                   element={<ProtectedRoute element={<InventoryCardUpdatePage/>}
+                                                            isAuthenticated={isAuth}/>}/>
 
-                    <Route path="/api/v1/inventories" element={<ProtectedRoute element={<InventoryOverviewPage/>} isAuthenticated={isAuth}/>}/>
-                    <Route path="/api/v1/inventories/create" element={<ProtectedRoute element={<InventoryCardCreatePage/>} isAuthenticated={isAuth}/>}/>
-                    <Route path="/api/v1/inventories/:id" element={<ProtectedRoute element={<InventoryCardViewPage/>} isAuthenticated={isAuth}/>}/>
-                    <Route path="/api/v1/inventories/update/:id" element={<ProtectedRoute element={<InventoryCardUpdatePage/>} isAuthenticated={isAuth}/>}/>
+                            <Route path="/api/v1/reservations"
+                                   element={<ProtectedRoute element={<ReservationOverviewPage/>}
+                                                            isAuthenticated={isAuth}/>}/>
+                            <Route path="/api/v1/reservations/:id"
+                                   element={<ProtectedRoute element={<ReservationCardViewPage/>}
+                                                            isAuthenticated={isAuth}/>}/>
+                            <Route path="/api/v1/reservations/update/:id"
+                                   element={<ProtectedRoute element={<ReservationCardUpdatePage/>}
+                                                            isAuthenticated={isAuth}/>}/>
 
-                    <Route path="/api/v1/reservations" element={<ProtectedRoute element={<ReservationOverviewPage/>} isAuthenticated={isAuth}/>}/>
-                    <Route path="/api/v1/reservations/:id" element={<ProtectedRoute element={<ReservationCardViewPage/>} isAuthenticated={isAuth}/>}/>
-                    <Route path="/api/v1/reservations/update/:id" element={<ProtectedRoute element={<ReservationCardUpdatePage/>} isAuthenticated={isAuth}/>}/>
+                            <Route path={"/search"} element={<SearchBooks/>}/>
 
-                    <Route path={"/search"} element={<SearchBooks/>}/>
+                            <Route path="/catalog" element={<Catalog/>}/>
+                            <Route path="/about" element={<AboutUs/>}/>
+                            <Route path="/contact" element={<Contact/>}/>
+                            <Route path="/reserve" element={<Cart/>}/>
 
-                    <Route path="/catalog" element={<Catalog/>}/>
-                    <Route path="/about" element={<AboutUs/>}/>
-                    <Route path="/contact" element={<Contact/>}/>
-                    <Route path="/reserve" element={<Cart/>}/>
+                            <Route path="/signin" element={<SignIn/>}/>
+                            <Route path="/signup" element={<SignUp/>}/>
+                            <Route path={"/profile"}
+                                   element={<ProtectedRoute element={<Profile/>} isAuthenticated={isAuth}/>}/>
+                            <Route path={"/profile/update"}
+                                   element={<ProtectedRoute element={<UpdateProfile/>} isAuthenticated={isAuth}/>}/>
+                            <Route path={"/api/v1/users"}
+                                   element={<ProtectedRoute element={<UserOverviewPage/>} isAuthenticated={isAuth}/>}/>
+                            <Route path="/api/v1/users/:id"
+                                   element={<ProtectedRoute element={<UserCardViewPage/>} isAuthenticated={isAuth}/>}/>
+                            <Route path="/api/v1/users/update/:id"
+                                   element={<ProtectedRoute element={<UserCardUpdatePage/>}
+                                                            isAuthenticated={isAuth}/>}/>
+                            <Route path={"/profile/uploadimage"}
+                                   element={<ProtectedRoute element={<UploadImage/>} isAuthenticated={isAuth}/>}/>
+                            <Route path="*" element={<NotFound/>}/>
+                        </Routes>
+                    </main>
 
-                    <Route path="/signin" element={<SignIn/>}/>
-                    <Route path="/signup" element={<SignUp/>}/>
-                    <Route path={"/profile"} element={<ProtectedRoute element={<Profile/>} isAuthenticated={isAuth}/>}/>
-                    <Route path={"/profile/update"} element={<ProtectedRoute element={<UpdateProfile/>} isAuthenticated={isAuth}/>}/>
-                    <Route path={"/api/v1/users"} element={<ProtectedRoute element={<UserOverviewPage/>} isAuthenticated={isAuth}/>}/>
-                    <Route path="/api/v1/users/:id" element={<ProtectedRoute element={<UserCardViewPage/>} isAuthenticated={isAuth}/>}/>
-                    <Route path="/api/v1/users/update/:id" element={<ProtectedRoute element={<UserCardUpdatePage/>} isAuthenticated={isAuth}/>}/>
-                    <Route path={"/profile/uploadimage"} element={<ProtectedRoute element={<UploadImage/>} isAuthenticated={isAuth}/>}/>
-                    <Route path="*" element={<NotFound/>}/>
-                </Routes>
-            </main>
+                </div>
+            </div>
+
             <Footer/>
         </div>
     )
