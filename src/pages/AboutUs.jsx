@@ -1,4 +1,4 @@
-// import "/src/App.css"
+import "/src/App.css"
 import content from "../content/content.json";
 import {useContext} from "react";
 import {LanguageContext} from "../context/LanguageContext.jsx";

@@ -11,22 +11,28 @@ function NotFound() {
         window.location.href = "/";
     };
     return (
-        <section className={"container notfound-container"}>
-            <article className="notfound-content">
-                <h1 className="notfound-title">404</h1>
-                <h2 className="notfound-subtitle">Page Not Found</h2>
-                <p className="notfound-message">
-                    Oops! The page you are looking for doesn&#39;t exist. It might have been moved or deleted.
-                </p>
-                <img
-                    src="src/assets/vecteezy_the-page-not-found-error-404_8892186.jpg"
-                    alt="Books Not Found Illustration"
-                    className="notfound-image"
-                />
-                <button className="notfound-button" onClick={handleGoBack}>
-                    Go Back to Home
-                </button>
-            </article>
+        <section className="container py-5">
+            <div className="row justify-content-center">
+                <div className="col-lg-8 col-lg-6">
+                    <div className="card text-center shadow-sm">
+                        <div className="card-body">
+                            <h1 className="display-4 text-danger">404</h1>
+                            <h2 className="mb-3">{title}</h2>
+                            <p className="text-muted mb-4">{description}</p>
+                            <img
+                                src="src/assets/vecteezy_the-page-not-found-error-404_8892186.jpg"
+                                alt="Books Not Found Illustration"
+                                className="img-fluid rounded mb-4"
+                            />
+
+                            <button className="btn btn-primary" onClick={handleGoBack}>
+                                Go Back to Home
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </section>
     );
 }
