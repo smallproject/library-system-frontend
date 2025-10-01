@@ -2,8 +2,10 @@ import Navbar from "./Navbar/Navbar.jsx";
 
 function Header(props) {
     return (
-        <header className={"container"}>
-            <Navbar {...props} />
+        <header className="bg-primary">
+            <div className="container-fluid px-0">
+                <Navbar {...props} />
+            </div>
         </header>
     );
 }

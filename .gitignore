@@ -64,3 +64,6 @@ coverage/
 
 # Vite cache
 .vite/
+
+# Build artifacts
+dist.zip
