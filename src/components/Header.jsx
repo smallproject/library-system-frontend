@@ -52,6 +52,9 @@ function Header(props) {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/contact">Contact</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/signin">Login</Link>
+                            </li>
                         </ul>
                     </div>
                     {/*<div className="collapse navbar-collapse" id="navbarNav">*/}
