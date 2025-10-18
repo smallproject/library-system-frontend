@@ -1,5 +1,20 @@
 import {jwtDecode} from "jwt-decode";
 
+
+const getUserId = (sub) => {
+    if (!sub || !sub.includes('::')) {
+        return null;
+    }
+    return sub.split('::')[0];
+}
+
+const getUsername = (sub) => {
+    if (!sub || !sub.includes('::')) {
+        return null;
+    }
+    return sub.split('::')[1];
+}
+
 function decodeTokenAndDeclare(token) {
     if (!token) {
         console.error("No token provided")
@@ -26,20 +41,6 @@ function decodeTokenAndDeclare(token) {
         console.error(e);
     }
 
-
-    const getUserId = (sub) => {
-        if (!sub || !sub.includes('::')) {
-            return null;
-        }
-        return sub.split('::')[0];
-    }
-
-    const getUsername = (sub) => {
-        if (!sub || !sub.includes('::')) {
-            return null;
-        }
-        return sub.split('::')[1];
-    }
 }
 
 export default decodeTokenAndDeclare;
